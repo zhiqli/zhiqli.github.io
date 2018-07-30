@@ -4,9 +4,9 @@
 # ---------------------------------------------------------------
 
 # Site
-title: 你想拥有什么，就去追求什么
-subtitle:
-description:
+title: Speculative
+subtitle: 你想拥有什么，就去追求什么
+description: 爱足球、读书、电影的低端码农
 author: zhiqli
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
@@ -228,7 +228,7 @@ social_icons:
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   Twitter: twitter
-  Weibo: weibo
+  Weibo: kubilitycoder 
 
 
 # Sidebar Avatar
@@ -428,8 +428,8 @@ gitalk:
 # Warning: JiaThis does not support https.
 #add_this_id:
 
-# Share
-#duoshuo_share: true
+  #Share
+  #duoshuo_share: true
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
