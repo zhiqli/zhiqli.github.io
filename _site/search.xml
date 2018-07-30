@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    <entry>
+      <title><![CDATA[grpc转换为http对外服务]]></title>
+      <url>/golang/2018/07/30/grpc-http-json/</url>
+      <content type="text"><![CDATA[grpc转换为http对外服务grpc支持将协议转换成http对外服务，数据通过post json提交相对于普通的grpc服务，只需要在定义pb时稍作修改即可syntax = "proto3";package helloworld;import "google/api/annotations.proto";service srv {    rpc Say(HelloReq) returns (HelloResp){        option (google.api.http) = {            post: "/say/hello"                              body: "*"        };    }}调用:curl -X POST http://127.0.0.1:8080/say/hello -d {}相对于普通pb多了import "google/api/annotations.proto";option (google.api.http) = {            post: "/say/hello"                              body: "*"        };]]></content>
+      <categories>
+        
+          <category> golang </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> golang </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+</search>
