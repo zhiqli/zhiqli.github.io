@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/%E9%9D%A2%E8%AF%95/2018/07/30/c-interview-strlen-sizeof/</loc>
+<lastmod>2018-07-30T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/%E9%9D%A2%E8%AF%95/2018/07/30/cpp-binding/</loc>
+<lastmod>2018-07-30T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/tcp/2018/07/30/grpc-established/</loc>
+<lastmod>2018-07-30T00:00:00+08:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/golang/2018/07/30/grpc-http-json/</loc>
 <lastmod>2018-07-30T00:00:00+08:00</lastmod>
 </url>
