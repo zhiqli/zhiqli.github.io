@@ -31,14 +31,14 @@ prometheus.io/port: "<metrics port>"
 ## 应用
 OK，查完文档，开始实践。我的环境没有开启mutual TLS 。
 服务起来以后查看prometheus target，奇怪的事情发生了
-![](20190507/57269660-dddd3300-70ba-11e9-8f03-62fd306e6fc0.png)
+![](https://github.com/zhiqli/zhiqli.github.io/blob/master/_posts/20190507/57269660-dddd3300-70ba-11e9-8f03-62fd306e6fc0.png)
 我的服务在`kubernetes-pods-istio-secure` job下，而在这个job下指定了scheme为https。由于没有配置https，访问不通。
 经过一番google还是没有找到问题，后面看到`kubernetes-pods`的配置里面有一个`source_labels: [__meta_kubernetes_pod_annotation_sidecar_istio_io_status, __meta_kubernetes_pod_annotation_prometheus_io_scheme]`于是在pod yaml annotations增加`Prometheus.io/scheme: "http"`
 再次刷新网页，我的3个应用出现在`kubernetes-pods`，状态也为UP。
-![](20190507/A51DA3F8-96AA-4018-B25C-C63F3455A51E.png)
+![](https://github.com/zhiqli/zhiqli.github.io/blob/master/_posts/20190507/A51DA3F8-96AA-4018-B25C-C63F3455A51E.png)
 进入graph搜索，应用程序的metric可以搜到
 
-![](20190507/74F715DA-7491-4DFB-B745-235B6673083A.png)
+![](https://github.com/zhiqli/zhiqli.github.io/blob/master/_posts/20190507/74F715DA-7491-4DFB-B745-235B6673083A.png)
 至于在annotations没添加scheme http时为什么给分配到job `kubernetes-pods-istio-secure` 也不明白。但问题总算解决了。
 ## 结论
 这个简单的问题花了很多时间，回头来看走了这么多弯路还是对prometheus、istio不够了解，基础知识还欠缺。
