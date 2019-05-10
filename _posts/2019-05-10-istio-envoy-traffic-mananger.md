@@ -53,9 +53,7 @@ spec:
       version: v2
 ```
 一开始90%的流量导向v1，10%的流量导向v2，测试正常。
-
 修改VirutalService，10%流量到v1，90%的流量到v2，测试发现和修改前没有变化。
-
 后来delete了api-gateway的pod重新拉起pod，发现VirutalService生效了。后面多次测试发现确实需要重新连接流量才会生效。
 
 于是提了一个issue，官方给的答复如下
