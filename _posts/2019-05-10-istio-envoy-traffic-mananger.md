@@ -8,10 +8,11 @@ tags:
 ---
 
 最近在调研istio，很重要的一点是想利用istio金丝雀发布时精细的流量控制。我们知道在k8s的金丝雀发布一般是通过label来控制，如果需要灰度1%的流量，那么总共需要100个pod。具体可以参考[这篇文章](https://mp.weixin.qq.com/s/dRHP25l_8jGh5UsNpI6jzA)。而istio则可以通过VirtualService来做流量控制，具体可以参考[官方文档](https://istio.io/docs/concepts/traffic-management/)。
+
 结论是暂时istio无法满足我们的需求，还是在这里记录一下调研过程。
 ## 背景
 先说下我们的服务架构，api-gateway和服务之间是采用grpc长连接，想要控制api-gatewasy与服务之间的流量。
-服务的架构图如下
+服务的架构如下
 
 ![](https://ws3.sinaimg.cn/large/006tNc79gy1g2wdxhpew0j30br066glp.jpg)
 ## istio流量控制
@@ -52,17 +53,25 @@ spec:
       version: v2
 ```
 一开始90%的流量导向v1，10%的流量导向v2，测试正常。
+
 修改VirutalService，10%流量到v1，90%的流量到v2，测试发现和修改前没有变化。
+
 后来delete了api-gateway的pod重新拉起pod，发现VirutalService生效了。后面多次测试发现确实需要重新连接流量才会生效。
+
 于是提了一个issue，官方给的答复如下
+
 > As far as I know, Envoy won't intentionally close the connections just to get the load balancing even, it will only apply to new connections. We face a similar issue with the connection between Envoy and Pilot, which is long lasting.  
 > Maybe there is a better solution, but one possible answer is to reconnect every X minutes, so that a new connection will be made and it will be load balanced。  
-相当于把锅给envoy了？连接和流量有关系吗？这个逻辑说不清啊。于是接下来我又测试了envoy的流量拆分。
+
+连接和流量貌似并没有必然的联系，于是接下来我又测试了envoy的流量拆分。
+
 ## envoy
 业务服务有其他东西耦合，我重新写了一份代码用于验证。部署图如下
 ![](https://ws4.sinaimg.cn/large/006tNc79gy1g2wdwtnvjvj30gk05gwep.jpg)
+
 api-gateway和server之间依然采用grpc长连接，和前面一样。
 envoy跑在docker中。
+
 envoy配置如下
 ```
 static_resources:
@@ -145,7 +154,9 @@ admin:
 加上`grpc: {}`以后就可以了
 
 服务搭建好以后，先测试90%流量到service1，10%流量到service2，测试通过，不过感觉envoy的精确度没有isto高，有时候请求10次全部service1，而istio每次都能很精确，但大体不差可以说明问题。
+
 然后通过动态修改配置，POST `127.0.0.1:8001/runtime_modify?routing.traffic_split.service1=10&routing.traffic_split.service2=90` 将10%的流量到service1，90%的流量到service2。再次测试，看到大部分流量已经转向service2了，验证通过。
+
 ## 结论
 从上面的实验可以看出，流量和连接确实没有关系，envoy是支持动态修改流量控制的。但没有深入去看istio VirtualService的实现原理，也并不能下结论这就是有问题。
 已经将验证结果更新至issue，期待对方回复，也希望能早点支持这个feature。
