@@ -34,6 +34,7 @@ nginx大法好啊，nginx5分钟解决了一个envoy带来两周的伤害。
 ## 总结
 总结一下这次解决问题的过程
 envoy提供ratelimit的api，可以接入一个全局的速率限制服务，lyft已经提供了一个[ratelimt](https://github.com/lyft/ratelimit)服务可以参考甚至直接用。关于限速配置，readme中有详细说明。
+
 关于envoy配置，官方文档中也有描述，不过各版本之间略有差异，需要针对各版本进行配置，最新版，网上有一个 [envoy_ratelimit_example](https://github.com/jbarratt/envoy_ratelimit_example) 
 可以参考，而低版本则可以通过官文文档进行配置。
 
