@@ -27,7 +27,9 @@ nginx大法好啊，nginx5分钟解决了一个envoy带来两周的伤害。
 ![img](https://user-images.githubusercontent.com/3350002/63155617-7e8da800-c045-11e9-8ab0-8a3ed4e9b251.png)
 
 同时调研envoy ratelimit，这又是一个悲伤的故事。由于我们用的还是envoy1.6或者1.7（别问为什么，问就是以前团队留下的坑），试了ratelimt发现，grpc和http都能有效限制remote_address的请求次数，就是websocket无效。又验证最新的envoy，发现没有问题。
+
 这时候升级envoy就完事了吧，领导觉得动作太大，因为从网关到服务，实际上有三个envoy（包括sidecar里面的envoy），都得升级，否则websocket请求全部是503 UR，还不保证服务里面的socket io相关代码不需要修改。
+
 最后祭出nginx大法。昨晚下班前5分钟在测试环境配置nginx，验证通过。
 今天早上业务验证通过，上线，持续观察了几天，再也没有重启过，业务同学也再也没找过我了。
 
