@@ -72,4 +72,4 @@ tags:
 ```
 "http2_protocol_options": { "allow_connect": true},
 ```
-**且不能将协议指定为http2**。
+**且upstream cluster配置中不能将协议指定为http2**。
