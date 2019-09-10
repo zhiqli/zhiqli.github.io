@@ -35,15 +35,18 @@ tags:
 
 背景已经交代清楚了，这里再说下问题。
 
-1. envoy升级以后，按照设置了`upgrade_configs`，请求发现front-envoy一直报错，503 UR，即upstream reset。
+1. envoy升级以后，按照配置设置了`upgrade_configs`，请求发现front-envoy一直报错，503 UR，即upstream reset。
 再跟踪envoy1的trace日志，发现有一行日志`invalid frame: Invalid HTTP header field was received`。
 
 2. 查了好久都没找到答案，上github提了一个issue，后来回复，由于envoy之间是http2连接，需要设置`allow_connect=true`才行，参考[文档描述](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/http/websocket.html?highlight=upgrade_configs#handling-http-2-hops)。
 由于之前文档没有描述`allow_connect`，现在看到的是我提了issue才加上的描述。所以自己查了很久也没搞定。
 ![85E35B00-1ED3-4007-A063-057E975B8A26](https://user-images.githubusercontent.com/3350002/64596850-44ff5100-d3e7-11e9-955d-e3336b5c50f8.png)
 
-3. 设置上`allow_connect`以后，frontenvoy的日志从503 UR变成503了，查看envoy1的日志，变成503 UR，envoy2又收到错误日志`invalid frame: Invalid HTTP header field was received`。
-而envoy2已经设置了`allow_connect`啊。后来查明原来我是在cluster里面的`http2_protocol_options`中设置了`allow_connect=true`，需要在`http_connection_mananger`中的`http2_protocol_options`中设置
+3. 设置上`allow_connect`以后，frontenvoy的日志从503 UR变成503了。
+查看envoy1的日志，503 UR 以及`invalid frame: Invalid HTTP header field was received`。和刚才envoy1一样的。
+
+而envoy2已经设置了`allow_connect`啊。后来查明原来我是在`cluster`里面的`http2_protocol_options`中设置了`allow_connect=true`，需要在`http_connection_mananger`中的`http2_protocol_options`中设置。
+
 4. 设置完成，envoy2又出现以下日志
 
 ```
@@ -53,9 +56,8 @@ tags:
 
 再检查一遍配置，发现我在upstream cluster中加了`http2_protocol_options{}`这就指定协议为http2，v1配置可以用`"features":"http2",`配置为http2，默认http。而在v2配置中，需要通过`http2_protocol_options{}`指定协议为http2，`http_protocol_options{}`或不填表示http。
 
-至此，终于跑通了，那一刻简直喜极而泣。
 
-再总结一下几个envoy需要修改的地方
+#### 再总结一下几个envoy需要修改的地方
 
 * frontenvoy
 `http_connection_mananger`中指定
@@ -65,7 +67,6 @@ tags:
 ```
 
 * envoy1、envoy2
-
 `http_connection_mananger`中指定
 
 ```
