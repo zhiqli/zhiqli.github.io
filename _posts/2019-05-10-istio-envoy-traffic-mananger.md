@@ -14,7 +14,8 @@ tags:
 先说下我们的服务架构，api-gateway和服务之间是采用grpc长连接，想要控制api-gatewasy与服务之间的流量。
 服务的架构如下
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1g2wdxhpew0j30br066glp.jpg)
+![image](https://user-images.githubusercontent.com/3350002/64666252-3452e780-d488-11e9-85b8-00fce37095ed.png)
+
 ## istio流量控制
 流量拆分具体案例参考[官方例子](https://istio.io/docs/tasks/traffic-management/traffic-shifting/)采用istio部署以后，部署VirutalService配置如下
 ```
