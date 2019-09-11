@@ -67,7 +67,7 @@ spec:
 ## envoy
 业务服务有其他东西耦合，我重新写了一份代码用于验证。部署图如下
 
-![image](https://user-images.githubusercontent.com/3350002/64666771-040c4880-d48a-11e9-8a81-0a05a4f09062.png)
+![image](https://user-images.githubusercontent.com/3350002/64666841-49c91100-d48a-11e9-9473-b2d54e02add0.png)
 
 api-gateway和server之间依然采用grpc长连接，和前面一样。
 envoy跑在docker中。
