@@ -81,12 +81,12 @@ resources:
 ```
 bases:
 - ../base
-nameSuffix: -canary-v2		// 新版本deploy name suffix
+nameSuffix: -canary-v2		// 新版本deploy name suffix，实际上在base中提供service.yaml，每次也会创建新的service，也就是说实现了蓝绿发布了？
 commonLabels:
   version: v2		// 新版本tag
   canary: "true"
 patchesStrategicMerge:
-- resource-patch.yaml	// 由于kubectl中的kustomize不支持replica 所以通过patch来控制replicas
+- resource-patch.yaml	// 由于kubectl中的kustomize不支持replica 所以通过patch来控制replicas，在新版本的kustomize只修改replicas count 可以不用patch方式。
 images:
 - name: gitlab.cn/argo/argo-demo
   newTag: v2  // 灰度版本tag
@@ -140,6 +140,7 @@ spec:
 
 ## 回滚
 argocd本身提供了回滚机制，但是这个回滚以后由于target version的版本号已经修改为最新的，如果不小心同步那么又是最新版本。所以灰度建议通过修改target version的版本号，同时手动删除新版本的deploy来实现。
+部署配置的版本通过gitlab管理了，实际上想回滚到哪个版本都行。极其方便且安全。
 
 ## 用户权限控制
 上面说了，argocd默认只有一个admin用户，但不可能把这个用户开放给所有人，所幸[支持sso登录](https://argoproj.github.io/argo-cd/operator-manual/sso/)。
