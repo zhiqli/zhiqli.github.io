@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Weeklies on 广阔天地大有作为</title>
-    <link>https://zhiqli.github.io/weekly/</link>
-    <description>Recent content in Weeklies on 广阔天地大有作为</description>
+    <title>Weekly on 广阔天地大有作为</title>
+    <link>https://zhiqli.github.io/tags/weekly/</link>
+    <description>Recent content in Weekly on 广阔天地大有作为</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© Copyright zhiqli</copyright>
     <lastBuildDate>Sun, 03 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://zhiqli.github.io/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://zhiqli.github.io/tags/weekly/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2024-03-03 第九周</title>
       <link>https://zhiqli.github.io/weekly/2024-03-03-w9/</link>
