@@ -17,7 +17,6 @@
 <meta property="og:url" content="https://zhiqli.github.io/2018/07/grpc%E8%BD%AC%E6%8D%A2%E4%B8%BAhttp%E5%AF%B9%E5%A4%96%E6%9C%8D%E5%8A%A1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-07-30T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-07-30T00:00:00+00:00" />
-
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="grpc转换为http对外服务"/>
 <meta name="twitter:description" content="grpc转换为http对外服务 grpc支持将协议转换成http对外服务，数据通过post json提交 相对于普通的grpc服务，只需要在定义pb时稍作修改即可
 1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &quot;google/api/annotations.proto&quot;;
