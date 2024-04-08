@@ -75,6 +75,85 @@
 					<div class="post-header">
 						<div class="meta">
 							<div class="date">
+								<span class="day">21</span>
+								<span class="rest">Sep 2022</span>
+							</div>
+						</div>
+						<div class="matter">
+							<h4 class="title small">
+								<a href="/2022/09/google-code-review-%E6%8C%87%E5%8D%97/">Google Code review 指南</a>
+							</h4>
+							
+							<h4 class="title small smaller">
+								14,728 words, ~58 min read
+							</h4>
+							<h4 class="title small smaller">
+								
+								<ul class="tags flat">
+									
+									
+									<li class="tag-li"><a href="/tags/software-engineering">Software Engineering</a></li>
+									
+								</ul>
+								
+							</h4>
+							<span class="description">
+								
+								
+Google 拥有许多覆盖所有语言和所有项目的通用工程实践。这些文档是Google长期以来形成的各种最佳做法的集体经验。
+## 名词解释
+* **Nit**: nitpick 意思鸡蛋里挑骨头
+- **CL**: changelist
+-...
+								
+							</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="post">
+					<div class="post-header">
+						<div class="meta">
+							<div class="date">
+								<span class="day">17</span>
+								<span class="rest">Dec 2019</span>
+							</div>
+						</div>
+						<div class="matter">
+							<h4 class="title small">
+								<a href="/2019/12/openrestry-body_bytes_sent-0/">openrestry body_bytes_sent = 0</a>
+							</h4>
+							
+							<h4 class="title small smaller">
+								794 words, ~3 min read
+							</h4>
+							<h4 class="title small smaller">
+								
+								<ul class="tags flat">
+									
+									
+									<li class="tag-li"><a href="/tags/network">network</a></li>
+									
+								</ul>
+								
+							</h4>
+							<span class="description">
+								
+								
+这是服务从IDC迁移上阿里云过程中遇到的一个问题，虽然定位完成以后发现其实很简单，但也算一个典型的案例。服务是一个openrestry。
+
+## 现象
+服务在阿里云部署完以后内部测试通过，切域名。后来收到一个新接入客户端反馈，服务请求失败...
+								
+							</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="post">
+					<div class="post-header">
+						<div class="meta">
+							<div class="date">
 								<span class="day">22</span>
 								<span class="rest">Nov 2019</span>
 							</div>
@@ -186,83 +265,6 @@
 ## 背景
 我们有一个长连接通道的项目，原来是通过http2.0连接。后来因为要做扫码登录的业务，所以使用 socket.io
 支持了http1.1的连接，这是同事...
-								
-							</span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="post">
-					<div class="post-header">
-						<div class="meta">
-							<div class="date">
-								<span class="day">10</span>
-								<span class="rest">May 2019</span>
-							</div>
-						</div>
-						<div class="matter">
-							<h4 class="title small">
-								<a href="/2019/05/istio/envoy%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E9%97%AE%E9%A2%98/">istio/envoy流量控制问题</a>
-							</h4>
-							
-							<h4 class="title small smaller">
-								1,110 words, ~4 min read
-							</h4>
-							<h4 class="title small smaller">
-								
-								<ul class="tags flat">
-									
-									
-									<li class="tag-li"><a href="/tags/istio">istio</a></li>
-									
-									<li class="tag-li"><a href="/tags/%E7%AC%94%E8%AE%B0">笔记</a></li>
-									
-								</ul>
-								
-							</h4>
-							<span class="description">
-								
-								
-最近在调研istio，很重要的一点是想利用istio金丝雀发布时精细的流量控制。我们知道在k8s的金丝雀发布一般是通过label来控制，如果需要灰度1%的流量，那么总共需要100个pod。具体可以参考[这篇文章](https://mp.w...
-								
-							</span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="post">
-					<div class="post-header">
-						<div class="meta">
-							<div class="date">
-								<span class="day">07</span>
-								<span class="rest">May 2019</span>
-							</div>
-						</div>
-						<div class="matter">
-							<h4 class="title small">
-								<a href="/2019/05/istio-%E6%8A%93%E5%8F%96%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84metric/">istio 抓取应用程序的metric</a>
-							</h4>
-							
-							<h4 class="title small smaller">
-								1,011 words, ~4 min read
-							</h4>
-							<h4 class="title small smaller">
-								
-								<ul class="tags flat">
-									
-									
-									<li class="tag-li"><a href="/tags/istio">istio</a></li>
-									
-									<li class="tag-li"><a href="/tags/%E7%AC%94%E8%AE%B0">笔记</a></li>
-									
-								</ul>
-								
-							</h4>
-							<span class="description">
-								
-								
-istio中会对网格内数据的metric数据收集，也可以自定义一些新的metric。通过这些数据有助于了解流量如何在集群中流动的。但这些数据不包括应用程序业务层的数据。
-我们的应用中都有调用prometheus的go client api...
 								
 							</span>
 						</div>

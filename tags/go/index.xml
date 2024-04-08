@@ -7,8 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© Copyright zhiqli</copyright>
-    <lastBuildDate>Thu, 29 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://zhiqli.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码仓库迁移引发的包引用问题</title>
+      <link>https://zhiqli.github.io/2024/04/%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB%E5%BC%95%E5%8F%91%E7%9A%84%E5%8C%85%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 08 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://zhiqli.github.io/2024/04/%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB%E5%BC%95%E5%8F%91%E7%9A%84%E5%8C%85%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98/</guid>
+      <description>奇怪的问题，简单的原因&#xA;背景 最近有个服务所在仓库的其他服务都交接给了其他团队，加上两个团队使用的一些依赖版本不一致，导致如果一直在这个仓库修改的话会带来一些编译和维护上的问题。于是决定出来，在迁移时除了本服务的代码还有一些依赖的公共代码也一起迁移出来了。但在重新发版以后奇怪的问题发生了。&#xA;问题 服务发布后第三天 SRE 联系，这个服务的内存一直在涨。从业务上这是一个调用量非常低的服务，不可能会使用大量内存。并且在过去几年负载一直都处于非常低的状态。 定位 首先回忆，本次修改的内容&#xA;仓库迁移，只是把代码迁移出来而已。 修改 redis host，也是本次修改的目的，其他几十个服务有同用的修改，可以排除。 为了和其他所有服务统一，升级了 base image 和 go 版本。难道问题出在这里？好像也说不通，毕竟其他服务都已经升级，而且系统和 go 都是稳定版本。 看起来并不能一眼看穿，Let’s dive in。&#xA;pprof 查看内存 发现绝大部分占用来自prometheus.newSummary 这个函数，很显然是来自监控上报。检查修改前后的 prometheus client_golang 的依赖版本，并无变化。&#xA;查看metrics 先本地看看 metrics 的情况。发现异常指标，这个指标的 api_name 这个 label是一个很独立的字符串，不是一个合适的监控指标。统计了一下果然很多，有数十万之多。 奇怪了，难道之前就没有这个指标吗？拉出一个监控看了看，还确实就是从发布以后才出现的。 分析代码 代码中，上报监控都是来自一个 reportMetrics 函数&#xA;1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 func reportMetrics(requestPath, httpMethod string, statusCode int, costTime float64, c *gin.</description>
+    </item>
     <item>
       <title>go 1.14.1 timer bug</title>
       <link>https://zhiqli.github.io/2024/02/go-1.14.1-timer-bug/</link>
