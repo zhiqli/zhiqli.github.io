@@ -26,7 +26,7 @@
     <item>
       <title>内存一直涨，是内存泄露吗？</title>
       <link>https://zhiqli.github.io/2024/04/%E5%86%85%E5%AD%98%E4%B8%80%E7%9B%B4%E6%B6%A8%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97/</link>
-      <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 06 Apr 2024 00:00:00 +0000</pubDate>
       <guid>https://zhiqli.github.io/2024/04/%E5%86%85%E5%AD%98%E4%B8%80%E7%9B%B4%E6%B6%A8%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97/</guid>
       <description>问题 SRE 反馈一个服务内存异常一直涨下不去，8G 内存的容器已经去到90%，怀疑是内存泄漏。&#xA;如下图，在定位解决之前，只能通过重启大法缓解。但可以看到服务重启以后内存会快速增长，然后半夜因为业务流量小趋于平稳，而到了白天用户流量上来又开始快速增长。 咋一看，严重怀疑内存泄漏。但也奇怪，这个服务运行了近4年，也只是第二次出现这种情况。&#xA;定位 首先对比 CPU / goroutine / TCP 连接数的指标，均很平稳，确定只是内存问题。&#xA;对于 go 程序，接下来显然第一时间采用 pprof 进行内存采样，但由于当时内存使用率已经太高采样失败，只能重启以后进行采样，第一次抓到 GetActivateChanceEntry 这个函数用了 20 M 内存。 使用 list 命令进去这个函数看到在调用 GetChanceEntry 这个函数使用了 13 M 内存 这个 GetChanceEntry 内部逻辑只是查 DB，对 DB 返回数据中的 json 字段进行反序列化，处理以后再序列化。 猜测会不会是一次性查询的数据太多？数据量是根据查询条件决定，会不会是查询的条件不合理？&#xA;1 2 3 4 5 6 7 8 9 func GetChanceEntry(ids []int64) ([]Data, error) { .... if err := dbconn.Where(&amp;#34;id IN (?)&amp;#34;, ids).Scan(&amp;amp;entries).Error; err != nil { return nil, err } .</description>
     </item>
