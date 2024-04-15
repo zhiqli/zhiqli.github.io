@@ -7,8 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© Copyright zhiqli</copyright>
-    <lastBuildDate>Mon, 08 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://zhiqli.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Weekly</title>
+      <link>https://zhiqli.github.io/tags/weekly/</link>
+      <pubDate>Sun, 14 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://zhiqli.github.io/tags/weekly/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Go</title>
       <link>https://zhiqli.github.io/tags/go/</link>
@@ -21,13 +28,6 @@
       <link>https://zhiqli.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Mon, 08 Apr 2024 00:00:00 +0000</pubDate>
       <guid>https://zhiqli.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Weekly</title>
-      <link>https://zhiqli.github.io/tags/weekly/</link>
-      <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://zhiqli.github.io/tags/weekly/</guid>
       <description></description>
     </item>
     <item>
