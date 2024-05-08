@@ -3,8 +3,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>基于argocd&#43;kustomize实现金丝雀上线 - 广阔天地大有作为</title><meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta itemprop="name" content="基于argocd&#43;kustomize实现金丝雀上线">
-<meta itemprop="description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
+	
+  <meta itemprop="name" content="基于argocd&#43;kustomize实现金丝雀上线">
+  <meta itemprop="description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
 spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java栈，所以不予考虑。 gitlab 也有CD能力，但是太简单，本质上还是依赖.gitlab.yml，不方便控制。网上有很多如何配置gitlab cicd的文章。 tekton 云原生，版本还比较低，没部署使用。 argocd 和git仓库能紧密结合，即gitops。目前一定迭代到1.3版本，界面简洁清晰。 部署 argoCD部署非常简单，两行代码搞定。
 1 2 kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 部署客户端，有些操作在UI无法实现，需要通过客户端命令行来操作，
 为了方便外部访问，增加一个ingress来提供外部访问，参考文档
@@ -16,11 +17,14 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 在目前常用的kubectl版本中，子命令已经包含kustomiz，更多参考官方文档。提供中文文档，且有详细列子，具体不写了。
 灰度发布 argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。
 在代码仓库中提供如下结构的kustomize目录。
-1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization."><meta itemprop="datePublished" content="2019-11-22T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-11-22T00:00:00+00:00" />
-<meta itemprop="wordCount" content="228">
-<meta itemprop="keywords" content="devops," /><meta property="og:title" content="基于argocd&#43;kustomize实现金丝雀上线" />
-<meta property="og:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
+1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization.">
+  <meta itemprop="datePublished" content="2019-11-22T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-11-22T00:00:00+00:00">
+  <meta itemprop="wordCount" content="228">
+  <meta itemprop="keywords" content="Devops"><meta property="og:url" content="https://zhiqli.github.io/2019/11/%E5%9F%BA%E4%BA%8Eargocd-kustomize%E5%AE%9E%E7%8E%B0%E9%87%91%E4%B8%9D%E9%9B%80%E4%B8%8A%E7%BA%BF/">
+  <meta property="og:site_name" content="广阔天地大有作为">
+  <meta property="og:title" content="基于argocd&#43;kustomize实现金丝雀上线">
+  <meta property="og:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
 spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java栈，所以不予考虑。 gitlab 也有CD能力，但是太简单，本质上还是依赖.gitlab.yml，不方便控制。网上有很多如何配置gitlab cicd的文章。 tekton 云原生，版本还比较低，没部署使用。 argocd 和git仓库能紧密结合，即gitops。目前一定迭代到1.3版本，界面简洁清晰。 部署 argoCD部署非常简单，两行代码搞定。
 1 2 kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 部署客户端，有些操作在UI无法实现，需要通过客户端命令行来操作，
 为了方便外部访问，增加一个ingress来提供外部访问，参考文档
@@ -32,12 +36,14 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 在目前常用的kubectl版本中，子命令已经包含kustomiz，更多参考官方文档。提供中文文档，且有详细列子，具体不写了。
 灰度发布 argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。
 在代码仓库中提供如下结构的kustomize目录。
-1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhiqli.github.io/2019/11/%E5%9F%BA%E4%BA%8Eargocd-kustomize%E5%AE%9E%E7%8E%B0%E9%87%91%E4%B8%9D%E9%9B%80%E4%B8%8A%E7%BA%BF/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-11-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-11-22T00:00:00+00:00" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="基于argocd&#43;kustomize实现金丝雀上线"/>
+1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization.">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-11-22T00:00:00+00:00">
+    <meta property="article:tag" content="Devops">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="基于argocd&#43;kustomize实现金丝雀上线">
 <meta name="twitter:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
 spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java栈，所以不予考虑。 gitlab 也有CD能力，但是太简单，本质上还是依赖.gitlab.yml，不方便控制。网上有很多如何配置gitlab cicd的文章。 tekton 云原生，版本还比较低，没部署使用。 argocd 和git仓库能紧密结合，即gitops。目前一定迭代到1.3版本，界面简洁清晰。 部署 argoCD部署非常简单，两行代码搞定。
 1 2 kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 部署客户端，有些操作在UI无法实现，需要通过客户端命令行来操作，
@@ -50,7 +56,7 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 在目前常用的kubectl版本中，子命令已经包含kustomiz，更多参考官方文档。提供中文文档，且有详细列子，具体不写了。
 灰度发布 argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。
 在代码仓库中提供如下结构的kustomize目录。
-1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization."/>
+1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization.">
 <link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
 
