@@ -38,8 +38,10 @@ envoy升级以后，按照配置设置了upgrade_configs，请求发现front-env
     <meta property="article:modified_time" content="2019-09-10T00:00:00+00:00">
     <meta property="article:tag" content="Envoy">
     <meta property="article:tag" content="笔记">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="envoy 代理http1.1">
-<meta name="twitter:description" content="最近处理了一个envoy代理http1.1的问题，先简单介绍一下背景
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="envoy 代理http1.1">
+  <meta name="twitter:description" content="最近处理了一个envoy代理http1.1的问题，先简单介绍一下背景
 背景 我们有一个长连接通道的项目，原来是通过http2.0连接。后来因为要做扫码登录的业务，所以使用 socket.io 支持了http1.1的连接，这是同事当时支持http1.1以后的博客。 代理当初用的envoy是1.6 v1 API ，现在由于其他问题想升级envoy到新版本，而新版本已经不支持v1 API，在升级的过程中遇到一些问题，也花了不少时间，搞定以后以此文作为笔记。
 服务部署结构 front-envoy 这是一个网关。需要处理客户端http1.1的请求，在envoy API v1的时候非常简单，只需要在Route中加上use_websocket=true即可，参考文档。 但是在API v2，这个配置修改了，参考文档，在http_connection_mananger中加upgrade_configs配置。
 envoy1 这实际上是k8s ingress，本来其实这个envoy就可以直接对外了，由于在阿里云slb的连接数有限制，所以才有在前面加了frontenvoy，有了frontenvoy连接会收敛，虽然front-envoy有一百多万连接，但到这里的连接数就很少了。

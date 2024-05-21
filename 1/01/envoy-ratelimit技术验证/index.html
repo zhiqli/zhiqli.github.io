@@ -36,8 +36,10 @@
     <meta property="article:section" content="posts">
     <meta property="article:tag" content="Envoy">
     <meta property="article:tag" content="笔记">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="envoy ratelimit技术验证">
-<meta name="twitter:description" content="nginx大法好啊，nginx5分钟解决了一个envoy带来两周的伤害。
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="envoy ratelimit技术验证">
+  <meta name="twitter:description" content="nginx大法好啊，nginx5分钟解决了一个envoy带来两周的伤害。
 背景 具体情况是这样的，我这边有个服务大概结构是这样的。
 高峰时大概承接了150w的grpc长连接，以及小于1000的websocket长连接。 上个月底由于已发版的客户端有个bug，会在后台不停发websocket建立连接请求，导致在一个周日下午5点半线上服务频繁重启，还好k8s会自动拉起服务。在超市买菜做晚饭的我赶紧冲回去，这时候能咋办呢。
 扩容，把pod数增加一倍，然而并没有卵用，还是秒挂。由于前端envoy有5个实例，跟领导报备，先做服务降级，把其中4个envoy关闭websocket，先保证这100来万grpc连接能正常啊。 挺过一晚上，周一去到公司，讨论了一上午，最后的方案是隔离，把最前面的envoy分离，websocket的域名只走单独的两个envoy。慢慢的服务平稳了一周。服务变成这样子

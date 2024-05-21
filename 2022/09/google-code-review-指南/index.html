@@ -37,8 +37,10 @@
     <meta property="article:published_time" content="2022-09-21T00:00:00+00:00">
     <meta property="article:modified_time" content="2022-09-21T00:00:00+00:00">
     <meta property="article:tag" content="Software Engineering">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Google Code review 指南">
-<meta name="twitter:description" content="Google 拥有许多覆盖所有语言和所有项目的通用工程实践。这些文档是Google长期以来形成的各种最佳做法的集体经验。
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Google Code review 指南">
+  <meta name="twitter:description" content="Google 拥有许多覆盖所有语言和所有项目的通用工程实践。这些文档是Google长期以来形成的各种最佳做法的集体经验。
 名词解释 Nit: nitpick 意思鸡蛋里挑骨头 CL: changelist LGTM: “Looks Good to Me”. 一般Code reviewer approve 一个CL的时候的回复。 1. Code Reviewer指南 1.1 Code Review的标准 Code review的目的是确保随着时间的推移，代码质量能够保持良好。为了实现这个目标，需要做一些权衡和取舍。
 首先，开发人员必须能够在他们的任务上取得进展。如果您从未向代码库提交改进，那么代码库就永远不会改进。此外，如果reviewer使得任何更改都很难进行，那么开发人员就没有动力在将来进行改进。 另一方面，reviewer有责任确保每个 CL 的质量都没问题，以至于其代码库的总体代码质量不会随着时间的推移而下降。这可能很棘手，因为通常情况下，代码库会随着时间的推移而逐渐退化，特别是当团队受到严重的时间限制，并且他们觉得必须走捷径才能完成目标的时候。
 此外，reviewer对他们正在review的代码拥有所有权和责任。他们希望确保代码库保持一致、可维护等等。

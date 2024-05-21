@@ -28,8 +28,10 @@ istio流量控制 流量拆分具体案例参考官方例子采用istio部署以
     <meta property="article:modified_time" content="2019-05-10T00:00:00+00:00">
     <meta property="article:tag" content="Istio">
     <meta property="article:tag" content="笔记">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="istio/envoy流量控制问题">
-<meta name="twitter:description" content="最近在调研istio，很重要的一点是想利用istio金丝雀发布时精细的流量控制。我们知道在k8s的金丝雀发布一般是通过label来控制，如果需要灰度1%的流量，那么总共需要100个pod。具体可以参考这篇文章。而istio则可以通过VirtualService来做流量控制，具体可以参考官方文档。
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="istio/envoy流量控制问题">
+  <meta name="twitter:description" content="最近在调研istio，很重要的一点是想利用istio金丝雀发布时精细的流量控制。我们知道在k8s的金丝雀发布一般是通过label来控制，如果需要灰度1%的流量，那么总共需要100个pod。具体可以参考这篇文章。而istio则可以通过VirtualService来做流量控制，具体可以参考官方文档。
 结论是暂时istio无法满足我们的需求，还是在这里记录一下调研过程。
 背景 先说下我们的服务架构，api-gateway和服务之间是采用grpc长连接，想要控制api-gatewasy与服务之间的流量。 服务的架构如下
 istio流量控制 流量拆分具体案例参考官方例子采用istio部署以后，部署VirutalService配置如下
