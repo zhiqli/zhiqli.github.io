@@ -6,6 +6,7 @@
 	<link rel="alternate" type="application/rss+xml" href="https://zhiqli.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" title="广阔天地大有作为" />
 	
   <meta itemprop="name" content="笔记">
+  <meta itemprop="datePublished" content="2024-04-08T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-04-08T00:00:00+00:00"><meta property="og:url" content="https://zhiqli.github.io/tags/%E7%AC%94%E8%AE%B0/">
   <meta property="og:site_name" content="广阔天地大有作为">
   <meta property="og:title" content="笔记">
@@ -71,6 +72,255 @@
 
 		<h1 class="page-title">Tag: 笔记</h1>
 
+		
+		<ul class="posts flat">
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">08</span>
+							<span class="rest">Apr 2024</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2024/04/%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB%E5%BC%95%E5%8F%91%E7%9A%84%E5%8C%85%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98/">代码仓库迁移引发的包引用问题</a>
+						</h4>
+						<span class="description">
+							
+								奇怪的问题，简单的原因
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">06</span>
+							<span class="rest">Apr 2024</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2024/04/%E5%86%85%E5%AD%98%E4%B8%80%E7%9B%B4%E6%B6%A8%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97/">内存一直涨，是内存泄露吗？</a>
+						</h4>
+						<span class="description">
+							
+								内存一直涨就是内存泄漏？可能不是。
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">15</span>
+							<span class="rest">Nov 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/11/%E4%B8%80%E6%AC%A1mysql%E9%94%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/">一次mysql锁问题排查</a>
+						</h4>
+						<span class="description">
+							
+								
+查了一个线上mysql 锁等待的问题，记录一下以后别犯这么低级的错误
+
+## 背景
+线上一个老业务有一个任务状态表，最早的设计是单库单表比较low。由于数据没有迁移，对完成任务也没有删除操作，日积月累导致数据越来越多影响正常业务。用了一个...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">10</span>
+							<span class="rest">Sep 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/09/envoy-%E4%BB%A3%E7%90%86http1.1/">envoy 代理http1.1</a>
+						</h4>
+						<span class="description">
+							
+								
+
+最近处理了一个envoy代理http1.1的问题，先简单介绍一下背景
+
+## 背景
+我们有一个长连接通道的项目，原来是通过http2.0连接。后来因为要做扫码登录的业务，所以使用 socket.io
+支持了http1.1的连接，这是同事...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">16</span>
+							<span class="rest">Aug 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/08/envoy-ratelimit%E6%8A%80%E6%9C%AF%E9%AA%8C%E8%AF%81/">envoy ratelimit技术验证</a>
+						</h4>
+						<span class="description">
+							
+								
+nginx大法好啊，nginx5分钟解决了一个envoy带来两周的伤害。
+
+### 背景
+具体情况是这样的，我这边有个服务大概结构是这样的。
+
+![img](https://user-images.githubusercontent.co...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">10</span>
+							<span class="rest">May 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/05/istio/envoy%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E9%97%AE%E9%A2%98/">istio/envoy流量控制问题</a>
+						</h4>
+						<span class="description">
+							
+								
+最近在调研istio，很重要的一点是想利用istio金丝雀发布时精细的流量控制。我们知道在k8s的金丝雀发布一般是通过label来控制，如果需要灰度1%的流量，那么总共需要100个pod。具体可以参考[这篇文章](https://mp.w...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">07</span>
+							<span class="rest">May 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/05/istio-%E6%8A%93%E5%8F%96%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84metric/">istio 抓取应用程序的metric</a>
+						</h4>
+						<span class="description">
+							
+								
+istio中会对网格内数据的metric数据收集，也可以自定义一些新的metric。通过这些数据有助于了解流量如何在集群中流动的。但这些数据不包括应用程序业务层的数据。
+我们的应用中都有调用prometheus的go client api...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">26</span>
+							<span class="rest">Apr 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/04/shell%E8%84%9A%E6%9C%AC%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F/">shell脚本变量作用域</a>
+						</h4>
+						<span class="description">
+							
+								
+
+今天写一个shell脚本遇到一个问题，脚本为实现从文件中按行读取，拼接成一个字符串。大概代码如下
+
+```
+content=&#34;&#34;
+cat ./file | while read line
+do
+    content=$content&#34;...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">24</span>
+							<span class="rest">Mar 2019</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2019/03/cgo%E7%AC%94%E8%AE%B0/">cgo笔记</a>
+						</h4>
+						<span class="description">
+							
+								
+&gt; 看了下上一次提交还是去年刚搭建这个博客的时候，之前在博客园维护过一个博客，三天打鱼半年晒网写过几篇，后面打算转战到此争取能多写几篇，没想到还是没做到。今天难得有时间，先总结一篇cgo相关的吧。
+&gt;
+&gt; 目前公司的技术栈已经全面转go，...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">24</span>
+							<span class="rest">Mar 2018</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="/2018/03/%E4%B8%80%E4%BA%9Btcp%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">一些TCP基础笔记</a>
+						</h4>
+						<span class="description">
+							
+								
+&gt; 本文主要是看书看文章时做的笔记，记录一些TCP相关的基本概念。引用文章来自补充阅读，点击可到原文链接。
+
+## 概念
+### MTU：maximum transmission unit最大传输单元
+&gt; 每种网络都不一样，以太网是150...
+							
+						</span>
+					</div>
+				</div>
+			</li>
+			
+		</ul>
 		
 	</div>
 

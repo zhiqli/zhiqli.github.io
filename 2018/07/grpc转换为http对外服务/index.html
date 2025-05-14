@@ -6,8 +6,7 @@
 	
   <meta itemprop="name" content="grpc转换为http对外服务">
   <meta itemprop="description" content="grpc转换为http对外服务 grpc支持将协议转换成http对外服务，数据通过post json提交 相对于普通的grpc服务，只需要在定义pb时稍作修改即可
-1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &#34;google/api/annotations.proto&#34;;
-1 2 3 4 option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; ">
+1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &#34;google/api/annotations.proto&#34;;">
   <meta itemprop="datePublished" content="2018-07-30T00:00:00+00:00">
   <meta itemprop="dateModified" content="2018-07-30T00:00:00+00:00">
   <meta itemprop="wordCount" content="64">
@@ -15,8 +14,7 @@
   <meta property="og:site_name" content="广阔天地大有作为">
   <meta property="og:title" content="grpc转换为http对外服务">
   <meta property="og:description" content="grpc转换为http对外服务 grpc支持将协议转换成http对外服务，数据通过post json提交 相对于普通的grpc服务，只需要在定义pb时稍作修改即可
-1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &#34;google/api/annotations.proto&#34;;
-1 2 3 4 option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; ">
+1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &#34;google/api/annotations.proto&#34;;">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -28,8 +26,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="grpc转换为http对外服务">
   <meta name="twitter:description" content="grpc转换为http对外服务 grpc支持将协议转换成http对外服务，数据通过post json提交 相对于普通的grpc服务，只需要在定义pb时稍作修改即可
-1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &#34;google/api/annotations.proto&#34;;
-1 2 3 4 option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; ">
+1 2 3 4 5 6 7 8 9 10 11 12 13 syntax = &#34;proto3&#34;; package helloworld; import &#34;google/api/annotations.proto&#34;; service srv { rpc Say(HelloReq) returns (HelloResp){ option (google.api.http) = { post: &#34;/say/hello&#34; body: &#34;*&#34; }; } } 调用:curl -X POST http://127.0.0.1:8080/say/hello -d {} 相对于普通pb多了 import &#34;google/api/annotations.proto&#34;;">
 <link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
 

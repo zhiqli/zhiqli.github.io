@@ -95,6 +95,9 @@
     <loc>https://zhiqli.github.io/2019/09/envoy-%E4%BB%A3%E7%90%86http1.1/</loc>
     <lastmod>2019-09-10T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://zhiqli.github.io/2019/08/envoy-ratelimit%E6%8A%80%E6%9C%AF%E9%AA%8C%E8%AF%81/</loc>
+    <lastmod>2019-08-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zhiqli.github.io/tags/istio/</loc>
     <lastmod>2019-05-10T00:00:00+00:00</lastmod>
   </url><url>
@@ -147,7 +150,5 @@
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhiqli.github.io/about/</loc>
-  </url><url>
-    <loc>https://zhiqli.github.io/1/01/envoy-ratelimit%E6%8A%80%E6%9C%AF%E9%AA%8C%E8%AF%81/</loc>
   </url>
 </urlset>

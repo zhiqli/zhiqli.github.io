@@ -8,9 +8,7 @@
   <meta itemprop="description" content="看了下上一次提交还是去年刚搭建这个博客的时候，之前在博客园维护过一个博客，三天打鱼半年晒网写过几篇，后面打算转战到此争取能多写几篇，没想到还是没做到。今天难得有时间，先总结一篇cgo相关的吧。
 目前公司的技术栈已经全面转go，而一些业务还需要依赖到一些老的C\C&#43;&#43; so，或者一些项目必须调用C/C&#43;&#43;的so，比如ffmpeg。所以工作中经常会使用到cgo来调用这些C\C&#43;&#43; so，把cgo调用方法和遇到的问题简单记录下来。
 cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如下面的代码。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 package main /* #include &lt;stdio.h&gt; int add(int a, int b) { return a &#43; b } #cgo CFLAGS: -g */ import &#34;C&#34; func main() { sum := C.add(C.int(1), C.int(1)) } 如果要使用cgo，在go源文件中必须加入import “C&#34;来标识，用于导入C实现的代码，而C源码则在import “C”上面以注释的方式加入。导入以后C源码可以在go代码中直接调用只要在函数、类型以C.开头即可。这里需要注意的一点是C代码和import “C”之间不能有空行
-调用so 在实际应用中，一般会把C实现封装成so提供cgo调用，通过LDFLAGS指定lib即可。
-1 2 3 4 5 6 7 8 9 package main /* #cgo CFLAGS: -I .">
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 package main /* #include &lt;stdio.h&gt; int add(int a, int b) { return a &#43; b } #cgo CFLAGS: -g */ import &#34;C&#34; func main() { sum := C.add(C.int(1), C.int(1)) } 如果要使用cgo，在go源文件中必须加入import “C&#34;来标识，用于导入C实现的代码，而C源码则在import “C”上面以注释的方式加入。导入以后C源码可以在go代码中直接调用只要在函数、类型以C.开头即可。这里需要注意的一点是C代码和import “C”之间不能有空行">
   <meta itemprop="datePublished" content="2019-03-24T00:00:00+00:00">
   <meta itemprop="dateModified" content="2019-03-24T00:00:00+00:00">
   <meta itemprop="wordCount" content="339">
@@ -20,9 +18,7 @@ cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如�
   <meta property="og:description" content="看了下上一次提交还是去年刚搭建这个博客的时候，之前在博客园维护过一个博客，三天打鱼半年晒网写过几篇，后面打算转战到此争取能多写几篇，没想到还是没做到。今天难得有时间，先总结一篇cgo相关的吧。
 目前公司的技术栈已经全面转go，而一些业务还需要依赖到一些老的C\C&#43;&#43; so，或者一些项目必须调用C/C&#43;&#43;的so，比如ffmpeg。所以工作中经常会使用到cgo来调用这些C\C&#43;&#43; so，把cgo调用方法和遇到的问题简单记录下来。
 cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如下面的代码。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 package main /* #include &lt;stdio.h&gt; int add(int a, int b) { return a &#43; b } #cgo CFLAGS: -g */ import &#34;C&#34; func main() { sum := C.add(C.int(1), C.int(1)) } 如果要使用cgo，在go源文件中必须加入import “C&#34;来标识，用于导入C实现的代码，而C源码则在import “C”上面以注释的方式加入。导入以后C源码可以在go代码中直接调用只要在函数、类型以C.开头即可。这里需要注意的一点是C代码和import “C”之间不能有空行
-调用so 在实际应用中，一般会把C实现封装成so提供cgo调用，通过LDFLAGS指定lib即可。
-1 2 3 4 5 6 7 8 9 package main /* #cgo CFLAGS: -I .">
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 package main /* #include &lt;stdio.h&gt; int add(int a, int b) { return a &#43; b } #cgo CFLAGS: -g */ import &#34;C&#34; func main() { sum := C.add(C.int(1), C.int(1)) } 如果要使用cgo，在go源文件中必须加入import “C&#34;来标识，用于导入C实现的代码，而C源码则在import “C”上面以注释的方式加入。导入以后C源码可以在go代码中直接调用只要在函数、类型以C.开头即可。这里需要注意的一点是C代码和import “C”之间不能有空行">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -37,9 +33,7 @@ cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如�
   <meta name="twitter:description" content="看了下上一次提交还是去年刚搭建这个博客的时候，之前在博客园维护过一个博客，三天打鱼半年晒网写过几篇，后面打算转战到此争取能多写几篇，没想到还是没做到。今天难得有时间，先总结一篇cgo相关的吧。
 目前公司的技术栈已经全面转go，而一些业务还需要依赖到一些老的C\C&#43;&#43; so，或者一些项目必须调用C/C&#43;&#43;的so，比如ffmpeg。所以工作中经常会使用到cgo来调用这些C\C&#43;&#43; so，把cgo调用方法和遇到的问题简单记录下来。
 cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如下面的代码。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 package main /* #include &lt;stdio.h&gt; int add(int a, int b) { return a &#43; b } #cgo CFLAGS: -g */ import &#34;C&#34; func main() { sum := C.add(C.int(1), C.int(1)) } 如果要使用cgo，在go源文件中必须加入import “C&#34;来标识，用于导入C实现的代码，而C源码则在import “C”上面以注释的方式加入。导入以后C源码可以在go代码中直接调用只要在函数、类型以C.开头即可。这里需要注意的一点是C代码和import “C”之间不能有空行
-调用so 在实际应用中，一般会把C实现封装成so提供cgo调用，通过LDFLAGS指定lib即可。
-1 2 3 4 5 6 7 8 9 package main /* #cgo CFLAGS: -I .">
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 package main /* #include &lt;stdio.h&gt; int add(int a, int b) { return a &#43; b } #cgo CFLAGS: -g */ import &#34;C&#34; func main() { sum := C.add(C.int(1), C.int(1)) } 如果要使用cgo，在go源文件中必须加入import “C&#34;来标识，用于导入C实现的代码，而C源码则在import “C”上面以注释的方式加入。导入以后C源码可以在go代码中直接调用只要在函数、类型以C.开头即可。这里需要注意的一点是C代码和import “C”之间不能有空行">
 <link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
 
@@ -118,8 +112,7 @@ cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如�
     
     <blockquote>
 <p>看了下上一次提交还是去年刚搭建这个博客的时候，之前在博客园维护过一个博客，三天打鱼半年晒网写过几篇，后面打算转战到此争取能多写几篇，没想到还是没做到。今天难得有时间，先总结一篇cgo相关的吧。</p>
-<p>目前公司的技术栈已经全面转go，而一些业务还需要依赖到一些老的C\C++ so，或者一些项目必须调用C/C++的so，比如ffmpeg。所以工作中经常会使用到cgo来调用这些C\C++ so，把cgo调用方法和遇到的问题简单记录下来。</p>
-</blockquote>
+<p>目前公司的技术栈已经全面转go，而一些业务还需要依赖到一些老的C\C++ so，或者一些项目必须调用C/C++的so，比如ffmpeg。所以工作中经常会使用到cgo来调用这些C\C++ so，把cgo调用方法和遇到的问题简单记录下来。</p></blockquote>
 <h3 id="cgo简单调用">cgo简单调用</h3>
 <p>在go中如果要调用C接口，要采用cgo来实现。比如下面的代码。</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
@@ -248,9 +241,9 @@ cgo简单调用 在go中如果要调用C接口，要采用cgo来实现。比如�
 </span></span><span style="display:flex;"><span>	in <span style="color:#555">:=</span> C.<span style="color:#c0f">CString</span>(str)
 </span></span><span style="display:flex;"><span>	out <span style="color:#555">:=</span> C.<span style="color:#c0f">pass_char_array</span>(in)
 </span></span><span style="display:flex;"><span>	outStr <span style="color:#555">:=</span> C.<span style="color:#c0f">GoString</span>(out)
-</span></span><span style="display:flex;"><span>	C.<span style="color:#c0f">free</span>(unsafe.<span style="color:#c0f">Pointer</span>(in))    <span style="color:#09f;font-style:italic">//注意需要手动调用free
-</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	C.<span style="color:#c0f">free</span>(unsafe.<span style="color:#c0f">Pointer</span>(out))   <span style="color:#09f;font-style:italic">//注意需要手动调用free
-</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	fmt.<span style="color:#c0f">Println</span>(<span style="color:#c30">&#34;print in go &#34;</span>, outStr)
+</span></span><span style="display:flex;"><span>	C.<span style="color:#c0f">free</span>(unsafe.<span style="color:#c0f">Pointer</span>(in))    <span style="color:#09f;font-style:italic">//注意需要手动调用free</span>
+</span></span><span style="display:flex;"><span>	C.<span style="color:#c0f">free</span>(unsafe.<span style="color:#c0f">Pointer</span>(out))   <span style="color:#09f;font-style:italic">//注意需要手动调用free</span>
+</span></span><span style="display:flex;"><span>	fmt.<span style="color:#c0f">Println</span>(<span style="color:#c30">&#34;print in go &#34;</span>, outStr)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>

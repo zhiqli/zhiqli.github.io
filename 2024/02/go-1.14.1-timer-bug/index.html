@@ -126,8 +126,7 @@
 
 </p>
 <blockquote>
-<p>这里漏了一个关键的堆栈，因为总结时现场已经破坏，正是通过这个堆栈在github找到这个<a href="https://github.com/golang/go/issues/38023">issue</a>，堆栈内容与issue中描述相同，可以参考issue。</p>
-</blockquote>
+<p>这里漏了一个关键的堆栈，因为总结时现场已经破坏，正是通过这个堆栈在github找到这个<a href="https://github.com/golang/go/issues/38023">issue</a>，堆栈内容与issue中描述相同，可以参考issue。</p></blockquote>
 <p>为了验证是否因为这个timer 的bug导致，将go升级为14.2，再次压测，问题没有重现，基本上可以确定解决。</p>
 <h2 id="原因分析">原因分析</h2>
 <p>简单来说就是</p>

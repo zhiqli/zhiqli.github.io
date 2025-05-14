@@ -6,8 +6,7 @@
 	
   <meta itemprop="name" content="一道C&#43;&#43;绑定面试题展开">
   <meta itemprop="description" content="早上排队进地铁时候看到一个面试题，据说校招社招从来没人做对过。被肉贴肉的人流中看了一眼，不是选B吗。后面细思不对，既然没人做对，必有蹊跷，肯定是一个下意识中一定错的答案。 来到公司，运行一遍。果然选C。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;stdio.h&gt; class Test { public: Test(){} ~Test(){} void f(){ printf(&#34;hello world\n&#34;); } }; int main() { Test *p = NULL; printf(&#34;%d\n&#34;, p); p-&gt;f(); return 0; } 以上代码运行结果： A 编译不过 B coredump C hello world D 以上都不对 仔细分析一下这题目。 在C&#43;&#43;中，对于非虚成员函数，是静态绑定的，编译时期绑定函数地址。并且在函数中，没有对this解引用，所以this即使是NULL也不会有问题。 那么还有一个问题来了，既然对象指针都为NULL，那么函数存在哪里呢？ C&#43;&#43;里面成员函数，不依赖对象，存储在代码区。在编译期就确定了，调用者空不空都无所谓。
-这里涉及到C&#43;&#43;中的静态绑定和动态绑定。相关分析有很多文章分析得非常好比如这篇">
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;stdio.h&gt; class Test { public: Test(){} ~Test(){} void f(){ printf(&#34;hello world\n&#34;); } }; int main() { Test *p = NULL; printf(&#34;%d\n&#34;, p); p-&gt;f(); return 0; } 以上代码运行结果： A 编译不过 B coredump C hello world D 以上都不对 仔细分析一下这题目。 在C&#43;&#43;中，对于非虚成员函数，是静态绑定的，编译时期绑定函数地址。并且在函数中，没有对this解引用，所以this即使是NULL也不会有问题。 那么还有一个问题来了，既然对象指针都为NULL，那么函数存在哪里呢？ C&#43;&#43;里面成员函数，不依赖对象，存储在代码区。在编译期就确定了，调用者空不空都无所谓。">
   <meta itemprop="datePublished" content="2018-07-30T00:00:00+00:00">
   <meta itemprop="dateModified" content="2018-07-30T00:00:00+00:00">
   <meta itemprop="wordCount" content="68">
@@ -15,8 +14,7 @@
   <meta property="og:site_name" content="广阔天地大有作为">
   <meta property="og:title" content="一道C&#43;&#43;绑定面试题展开">
   <meta property="og:description" content="早上排队进地铁时候看到一个面试题，据说校招社招从来没人做对过。被肉贴肉的人流中看了一眼，不是选B吗。后面细思不对，既然没人做对，必有蹊跷，肯定是一个下意识中一定错的答案。 来到公司，运行一遍。果然选C。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;stdio.h&gt; class Test { public: Test(){} ~Test(){} void f(){ printf(&#34;hello world\n&#34;); } }; int main() { Test *p = NULL; printf(&#34;%d\n&#34;, p); p-&gt;f(); return 0; } 以上代码运行结果： A 编译不过 B coredump C hello world D 以上都不对 仔细分析一下这题目。 在C&#43;&#43;中，对于非虚成员函数，是静态绑定的，编译时期绑定函数地址。并且在函数中，没有对this解引用，所以this即使是NULL也不会有问题。 那么还有一个问题来了，既然对象指针都为NULL，那么函数存在哪里呢？ C&#43;&#43;里面成员函数，不依赖对象，存储在代码区。在编译期就确定了，调用者空不空都无所谓。
-这里涉及到C&#43;&#43;中的静态绑定和动态绑定。相关分析有很多文章分析得非常好比如这篇">
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;stdio.h&gt; class Test { public: Test(){} ~Test(){} void f(){ printf(&#34;hello world\n&#34;); } }; int main() { Test *p = NULL; printf(&#34;%d\n&#34;, p); p-&gt;f(); return 0; } 以上代码运行结果： A 编译不过 B coredump C hello world D 以上都不对 仔细分析一下这题目。 在C&#43;&#43;中，对于非虚成员函数，是静态绑定的，编译时期绑定函数地址。并且在函数中，没有对this解引用，所以this即使是NULL也不会有问题。 那么还有一个问题来了，既然对象指针都为NULL，那么函数存在哪里呢？ C&#43;&#43;里面成员函数，不依赖对象，存储在代码区。在编译期就确定了，调用者空不空都无所谓。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -28,8 +26,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="一道C&#43;&#43;绑定面试题展开">
   <meta name="twitter:description" content="早上排队进地铁时候看到一个面试题，据说校招社招从来没人做对过。被肉贴肉的人流中看了一眼，不是选B吗。后面细思不对，既然没人做对，必有蹊跷，肯定是一个下意识中一定错的答案。 来到公司，运行一遍。果然选C。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;stdio.h&gt; class Test { public: Test(){} ~Test(){} void f(){ printf(&#34;hello world\n&#34;); } }; int main() { Test *p = NULL; printf(&#34;%d\n&#34;, p); p-&gt;f(); return 0; } 以上代码运行结果： A 编译不过 B coredump C hello world D 以上都不对 仔细分析一下这题目。 在C&#43;&#43;中，对于非虚成员函数，是静态绑定的，编译时期绑定函数地址。并且在函数中，没有对this解引用，所以this即使是NULL也不会有问题。 那么还有一个问题来了，既然对象指针都为NULL，那么函数存在哪里呢？ C&#43;&#43;里面成员函数，不依赖对象，存储在代码区。在编译期就确定了，调用者空不空都无所谓。
-这里涉及到C&#43;&#43;中的静态绑定和动态绑定。相关分析有很多文章分析得非常好比如这篇">
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;stdio.h&gt; class Test { public: Test(){} ~Test(){} void f(){ printf(&#34;hello world\n&#34;); } }; int main() { Test *p = NULL; printf(&#34;%d\n&#34;, p); p-&gt;f(); return 0; } 以上代码运行结果： A 编译不过 B coredump C hello world D 以上都不对 仔细分析一下这题目。 在C&#43;&#43;中，对于非虚成员函数，是静态绑定的，编译时期绑定函数地址。并且在函数中，没有对this解引用，所以this即使是NULL也不会有问题。 那么还有一个问题来了，既然对象指针都为NULL，那么函数存在哪里呢？ C&#43;&#43;里面成员函数，不依赖对象，存储在代码区。在编译期就确定了，调用者空不空都无所谓。">
 <link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
 
@@ -108,8 +105,7 @@
     
     <blockquote>
 <p>早上排队进地铁时候看到一个面试题，据说校招社招从来没人做对过。被肉贴肉的人流中看了一眼，不是选B吗。后面细思不对，既然没人做对，必有蹊跷，肯定是一个下意识中一定错的答案。
-来到公司，运行一遍。果然选C。</p>
-</blockquote>
+来到公司，运行一遍。果然选C。</p></blockquote>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1

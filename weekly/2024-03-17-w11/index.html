@@ -7,7 +7,8 @@
   <meta itemprop="name" content="2024-03-17 第十一周：如何获取 podcast 文本内容">
   <meta itemprop="description" content="流水账 儿子又生病了，周四周五休假两天。手表落在学校回来还不吭声。 预约了提前还掉一部分房贷。那天早上看了下地图，银行离家 3 km，不远不近就收拾了一下自行车骑车去银行，打算把车丢银行门口晚上再去骑。但从银行出来，突然决定骑车到公司去。全程差不多 10 km，早上40多分钟，晚上天黑慢一点，快一个小时，体验还不错。买了车灯、头盔，打算春天天气舒服，每周可以骑几次。但骑车的话就会少掉一部分阅读时间，两者不能兼得。 eBPF 的环境终于折腾得差不多了，ubuntu 22.04 &#43; neovim &#43; LazyVim，跑起了 hello world，算迈出了第一步 。但老电脑的磁盘不小心全部格式化了，可能丢掉不少老照片。 开始搞女儿的英语启蒙了，买了廖彩杏 1 - 7 的教材。第一周她热情很高，每天回来就要讲英语绘本，得坚持下去。 看了电影《过往人生 Past Lives》。12 岁的目标是得诺贝尔奖，24 岁的目标是得普利策奖，36 岁住在东村的小公寓里全然忘了过去的目标。像极了生活。 踢了一场球，状态还行。一个进球，浪费两个单刀。 阅读 《茶馆》 王笛老师的书优点是细，缺点也是细，太琐碎了。不过他搞的就是微观史，这本明着是讲49以后茶馆的变迁，实际上也是透过茶馆看老百姓生活的变化，也是一个城市的变化。由于不可避免涉及到历次政治变革，简中就不要想了。 《自由与爱之地》 以色列游记，和一般的游记不一样，这本书更多讲的是当地人的生活和文化。比较深度，但怎么我总看都有一种翻译感呢。 《Linux内核观测技术》 便概念科普的一本书，快速读一遍心里有个底，后面要花更多时间来实践，深入学习。 《我是谁？》 一开始以为是爱国实业家的自传🤣，后来才想起那是卢作孚。第一次听段义孚的名字，却意外发现这本书写得那么好，细腻真诚。看到其他评论说“地理学白先勇”猛点头，就是这感觉。 如何获取 podcast 文本内容 听了一段时间 podcast ，但除了初级到中级难度的英语教学那些能听懂个七七八八，其他的播客的基本上只能 10 % 以下，于是打算把字幕下载下来先看一遍，先搞懂大概意思和生词，再多听几遍。但 podcast 都没有字幕，网上虽然说有浏览器插件可以做到，但我并没有太多时间坐在电脑前去听。我的诉求是有文本的 PDF ，可以在通勤的时候先读一遍，把生词查好，再利用其他时间去听。 目前没有找到什么好办法。 自己折腾了一个土办法，我主要听的几个都同步有 youtube，从 youtube 下载字幕，再整理出 PDF。
 利用 yt-dlp 下载字幕 yt-dlp --write-auto-subs --sub-lang en --skip-download https://youtu.be/48ypNTal_NI\?si\=auRa7HlS9t9yuoHp
-字幕转换成 PDF 原理很简单，默认下下来的字幕格式是 vtt，从内容可以看到">
+字幕转换成 PDF 原理很简单，默认下下来的字幕格式是 vtt，从内容可以看到
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 WEBVTT Kind: captions Language: en 00:00:00.080 --&gt; 00:00:01.829 align:start position:0% hello&lt;00:00:00.359&gt;&lt;c&gt; welcome&lt;/c&gt;&lt;00:00:00.640&gt;&lt;c&gt; back&lt;/c&gt;&lt;00:00:00.799&gt;&lt;c&gt; to&lt;/c&gt;&lt;00:00:01.040&gt;&lt;c&gt; Luke&#39;s&lt;/c&gt;&lt;00:00:01.400&gt;&lt;c&gt; English&lt;/c&gt; 00:00:01.829 --&gt; 00:00:01.839 align:start position:0% hello welcome back to Luke&#39;s English 00:00:01.839 --&gt; 00:00:04.110 align:start position:0% hello welcome back to Luke&#39;s English podcast&lt;00:00:02.360&gt;&lt;c&gt; in&lt;/c&gt;&lt;00:00:02.520&gt;&lt;c&gt; this&lt;/c&gt;&lt;00:00:02.720&gt;&lt;c&gt; episode&lt;/c&gt;&lt;00:00:03.560&gt;&lt;c&gt; I&#39;m&lt;/c&gt;&lt;00:00:03.719&gt;&lt;c&gt; going&lt;/c&gt;&lt;00:00:03.879&gt;&lt;c&gt; to&lt;/c&gt; 包含一个头文件，这三行不管它。内容部分包括 时间轴内容 带有样式的内容 代码逻辑很简单，这两行内容是我不需要的，通过正则过滤匹配这两类规则的内容即可。最后输出 PDF 文件。 以下是代码：">
   <meta itemprop="datePublished" content="2024-03-17T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-03-17T00:00:00+00:00">
   <meta itemprop="wordCount" content="330">
@@ -16,7 +17,8 @@
   <meta property="og:title" content="2024-03-17 第十一周：如何获取 podcast 文本内容">
   <meta property="og:description" content="流水账 儿子又生病了，周四周五休假两天。手表落在学校回来还不吭声。 预约了提前还掉一部分房贷。那天早上看了下地图，银行离家 3 km，不远不近就收拾了一下自行车骑车去银行，打算把车丢银行门口晚上再去骑。但从银行出来，突然决定骑车到公司去。全程差不多 10 km，早上40多分钟，晚上天黑慢一点，快一个小时，体验还不错。买了车灯、头盔，打算春天天气舒服，每周可以骑几次。但骑车的话就会少掉一部分阅读时间，两者不能兼得。 eBPF 的环境终于折腾得差不多了，ubuntu 22.04 &#43; neovim &#43; LazyVim，跑起了 hello world，算迈出了第一步 。但老电脑的磁盘不小心全部格式化了，可能丢掉不少老照片。 开始搞女儿的英语启蒙了，买了廖彩杏 1 - 7 的教材。第一周她热情很高，每天回来就要讲英语绘本，得坚持下去。 看了电影《过往人生 Past Lives》。12 岁的目标是得诺贝尔奖，24 岁的目标是得普利策奖，36 岁住在东村的小公寓里全然忘了过去的目标。像极了生活。 踢了一场球，状态还行。一个进球，浪费两个单刀。 阅读 《茶馆》 王笛老师的书优点是细，缺点也是细，太琐碎了。不过他搞的就是微观史，这本明着是讲49以后茶馆的变迁，实际上也是透过茶馆看老百姓生活的变化，也是一个城市的变化。由于不可避免涉及到历次政治变革，简中就不要想了。 《自由与爱之地》 以色列游记，和一般的游记不一样，这本书更多讲的是当地人的生活和文化。比较深度，但怎么我总看都有一种翻译感呢。 《Linux内核观测技术》 便概念科普的一本书，快速读一遍心里有个底，后面要花更多时间来实践，深入学习。 《我是谁？》 一开始以为是爱国实业家的自传🤣，后来才想起那是卢作孚。第一次听段义孚的名字，却意外发现这本书写得那么好，细腻真诚。看到其他评论说“地理学白先勇”猛点头，就是这感觉。 如何获取 podcast 文本内容 听了一段时间 podcast ，但除了初级到中级难度的英语教学那些能听懂个七七八八，其他的播客的基本上只能 10 % 以下，于是打算把字幕下载下来先看一遍，先搞懂大概意思和生词，再多听几遍。但 podcast 都没有字幕，网上虽然说有浏览器插件可以做到，但我并没有太多时间坐在电脑前去听。我的诉求是有文本的 PDF ，可以在通勤的时候先读一遍，把生词查好，再利用其他时间去听。 目前没有找到什么好办法。 自己折腾了一个土办法，我主要听的几个都同步有 youtube，从 youtube 下载字幕，再整理出 PDF。
 利用 yt-dlp 下载字幕 yt-dlp --write-auto-subs --sub-lang en --skip-download https://youtu.be/48ypNTal_NI\?si\=auRa7HlS9t9yuoHp
-字幕转换成 PDF 原理很简单，默认下下来的字幕格式是 vtt，从内容可以看到">
+字幕转换成 PDF 原理很简单，默认下下来的字幕格式是 vtt，从内容可以看到
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 WEBVTT Kind: captions Language: en 00:00:00.080 --&gt; 00:00:01.829 align:start position:0% hello&lt;00:00:00.359&gt;&lt;c&gt; welcome&lt;/c&gt;&lt;00:00:00.640&gt;&lt;c&gt; back&lt;/c&gt;&lt;00:00:00.799&gt;&lt;c&gt; to&lt;/c&gt;&lt;00:00:01.040&gt;&lt;c&gt; Luke&#39;s&lt;/c&gt;&lt;00:00:01.400&gt;&lt;c&gt; English&lt;/c&gt; 00:00:01.829 --&gt; 00:00:01.839 align:start position:0% hello welcome back to Luke&#39;s English 00:00:01.839 --&gt; 00:00:04.110 align:start position:0% hello welcome back to Luke&#39;s English podcast&lt;00:00:02.360&gt;&lt;c&gt; in&lt;/c&gt;&lt;00:00:02.520&gt;&lt;c&gt; this&lt;/c&gt;&lt;00:00:02.720&gt;&lt;c&gt; episode&lt;/c&gt;&lt;00:00:03.560&gt;&lt;c&gt; I&#39;m&lt;/c&gt;&lt;00:00:03.719&gt;&lt;c&gt; going&lt;/c&gt;&lt;00:00:03.879&gt;&lt;c&gt; to&lt;/c&gt; 包含一个头文件，这三行不管它。内容部分包括 时间轴内容 带有样式的内容 代码逻辑很简单，这两行内容是我不需要的，通过正则过滤匹配这两类规则的内容即可。最后输出 PDF 文件。 以下是代码：">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="weekly">
@@ -28,7 +30,8 @@
   <meta name="twitter:title" content="2024-03-17 第十一周：如何获取 podcast 文本内容">
   <meta name="twitter:description" content="流水账 儿子又生病了，周四周五休假两天。手表落在学校回来还不吭声。 预约了提前还掉一部分房贷。那天早上看了下地图，银行离家 3 km，不远不近就收拾了一下自行车骑车去银行，打算把车丢银行门口晚上再去骑。但从银行出来，突然决定骑车到公司去。全程差不多 10 km，早上40多分钟，晚上天黑慢一点，快一个小时，体验还不错。买了车灯、头盔，打算春天天气舒服，每周可以骑几次。但骑车的话就会少掉一部分阅读时间，两者不能兼得。 eBPF 的环境终于折腾得差不多了，ubuntu 22.04 &#43; neovim &#43; LazyVim，跑起了 hello world，算迈出了第一步 。但老电脑的磁盘不小心全部格式化了，可能丢掉不少老照片。 开始搞女儿的英语启蒙了，买了廖彩杏 1 - 7 的教材。第一周她热情很高，每天回来就要讲英语绘本，得坚持下去。 看了电影《过往人生 Past Lives》。12 岁的目标是得诺贝尔奖，24 岁的目标是得普利策奖，36 岁住在东村的小公寓里全然忘了过去的目标。像极了生活。 踢了一场球，状态还行。一个进球，浪费两个单刀。 阅读 《茶馆》 王笛老师的书优点是细，缺点也是细，太琐碎了。不过他搞的就是微观史，这本明着是讲49以后茶馆的变迁，实际上也是透过茶馆看老百姓生活的变化，也是一个城市的变化。由于不可避免涉及到历次政治变革，简中就不要想了。 《自由与爱之地》 以色列游记，和一般的游记不一样，这本书更多讲的是当地人的生活和文化。比较深度，但怎么我总看都有一种翻译感呢。 《Linux内核观测技术》 便概念科普的一本书，快速读一遍心里有个底，后面要花更多时间来实践，深入学习。 《我是谁？》 一开始以为是爱国实业家的自传🤣，后来才想起那是卢作孚。第一次听段义孚的名字，却意外发现这本书写得那么好，细腻真诚。看到其他评论说“地理学白先勇”猛点头，就是这感觉。 如何获取 podcast 文本内容 听了一段时间 podcast ，但除了初级到中级难度的英语教学那些能听懂个七七八八，其他的播客的基本上只能 10 % 以下，于是打算把字幕下载下来先看一遍，先搞懂大概意思和生词，再多听几遍。但 podcast 都没有字幕，网上虽然说有浏览器插件可以做到，但我并没有太多时间坐在电脑前去听。我的诉求是有文本的 PDF ，可以在通勤的时候先读一遍，把生词查好，再利用其他时间去听。 目前没有找到什么好办法。 自己折腾了一个土办法，我主要听的几个都同步有 youtube，从 youtube 下载字幕，再整理出 PDF。
 利用 yt-dlp 下载字幕 yt-dlp --write-auto-subs --sub-lang en --skip-download https://youtu.be/48ypNTal_NI\?si\=auRa7HlS9t9yuoHp
-字幕转换成 PDF 原理很简单，默认下下来的字幕格式是 vtt，从内容可以看到">
+字幕转换成 PDF 原理很简单，默认下下来的字幕格式是 vtt，从内容可以看到
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 WEBVTT Kind: captions Language: en 00:00:00.080 --&gt; 00:00:01.829 align:start position:0% hello&lt;00:00:00.359&gt;&lt;c&gt; welcome&lt;/c&gt;&lt;00:00:00.640&gt;&lt;c&gt; back&lt;/c&gt;&lt;00:00:00.799&gt;&lt;c&gt; to&lt;/c&gt;&lt;00:00:01.040&gt;&lt;c&gt; Luke&#39;s&lt;/c&gt;&lt;00:00:01.400&gt;&lt;c&gt; English&lt;/c&gt; 00:00:01.829 --&gt; 00:00:01.839 align:start position:0% hello welcome back to Luke&#39;s English 00:00:01.839 --&gt; 00:00:04.110 align:start position:0% hello welcome back to Luke&#39;s English podcast&lt;00:00:02.360&gt;&lt;c&gt; in&lt;/c&gt;&lt;00:00:02.520&gt;&lt;c&gt; this&lt;/c&gt;&lt;00:00:02.720&gt;&lt;c&gt; episode&lt;/c&gt;&lt;00:00:03.560&gt;&lt;c&gt; I&#39;m&lt;/c&gt;&lt;00:00:03.719&gt;&lt;c&gt; going&lt;/c&gt;&lt;00:00:03.879&gt;&lt;c&gt; to&lt;/c&gt; 包含一个头文件，这三行不管它。内容部分包括 时间轴内容 带有样式的内容 代码逻辑很简单，这两行内容是我不需要的，通过正则过滤匹配这两类规则的内容即可。最后输出 PDF 文件。 以下是代码：">
 <link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
 
@@ -119,19 +122,19 @@
 <li>踢了一场球，状态还行。一个进球，浪费两个单刀。</li>
 </ul>
 <h2 id="阅读">阅读</h2>
-<h4 id="茶馆httpsbookdoubancomsubject36400218">《<a href="https://book.douban.com/subject/36400218/">茶馆</a>》</h4>
+<h4 id="茶馆">《<a href="https://book.douban.com/subject/36400218/">茶馆</a>》</h4>
 <ul>
 <li>王笛老师的书优点是细，缺点也是细，太琐碎了。不过他搞的就是微观史，这本明着是讲49以后茶馆的变迁，实际上也是透过茶馆看老百姓生活的变化，也是一个城市的变化。由于不可避免涉及到历次政治变革，简中就不要想了。</li>
 </ul>
-<h4 id="自由与爱之地httpsbookdoubancomsubject27099027">《<a href="https://book.douban.com/subject/27099027/">自由与爱之地</a>》</h4>
+<h4 id="自由与爱之地">《<a href="https://book.douban.com/subject/27099027/">自由与爱之地</a>》</h4>
 <ul>
 <li>以色列游记，和一般的游记不一样，这本书更多讲的是当地人的生活和文化。比较深度，但怎么我总看都有一种翻译感呢。</li>
 </ul>
-<h4 id="linux内核观测技术httpsbookdoubancomsubject35170101">《<a href="https://book.douban.com/subject/35170101/">Linux内核观测技术</a>》</h4>
+<h4 id="linux内核观测技术">《<a href="https://book.douban.com/subject/35170101/">Linux内核观测技术</a>》</h4>
 <ul>
 <li>便概念科普的一本书，快速读一遍心里有个底，后面要花更多时间来实践，深入学习。</li>
 </ul>
-<h4 id="我是谁httpsbookdoubancomsubject36402010_dtcc1">《<a href="https://book.douban.com/subject/36402010/?_dtcc=1">我是谁？</a>》</h4>
+<h4 id="我是谁">《<a href="https://book.douban.com/subject/36402010/?_dtcc=1">我是谁？</a>》</h4>
 <ul>
 <li>一开始以为是爱国实业家的自传🤣，后来才想起那是卢作孚。第一次听段义孚的名字，却意外发现这本书写得那么好，细腻真诚。看到其他评论说“地理学白先勇”猛点头，就是这感觉。</li>
 </ul>
@@ -287,7 +290,7 @@
 </span></span><span style="display:flex;"><span>      <span style="color:#555">//</span> <span style="color:#a00;background-color:#faa">字幕里面同一个句子会出现两次</span>  
 </span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">if</span> line <span style="color:#555">!=</span> <span style="color:#c30">&#34;&#34;</span> <span style="color:#555">&amp;&amp;</span> line <span style="color:#555">!=</span> lastLine {  
 </span></span><span style="display:flex;"><span>         lastLine <span style="color:#555">=</span> line  
-</span></span><span style="display:flex;"><span>         pdf<span style="color:#555">.</span>MultiCell(<span style="color:#f60">0</span>, <span style="color:#f60">10</span>, line, <span style="color:#c30">&#34;&#34;</span>, <span style="color:#c30">&#34;&#34;</span>, false)  
+</span></span><span style="display:flex;"><span>         pdf<span style="color:#555">.</span>MultiCell(<span style="color:#f60">0</span>, <span style="color:#f60">10</span>, line, <span style="color:#c30">&#34;&#34;</span>, <span style="color:#c30">&#34;&#34;</span>, <span style="color:#366">false</span>)  
 </span></span><span style="display:flex;"><span>      }  
 </span></span><span style="display:flex;"><span>   }  
 </span></span><span style="display:flex;"><span>  
