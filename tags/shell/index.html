@@ -36,7 +36,7 @@
 		</a>
 		
 		<div class="brand-copy">
-			<p class="brand-kicker">Code · Notes · 跑步</p>
+			<p class="brand-kicker">Code · Notes · Running · Reading</p>
 			<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1><p class="site-subtitle">你想拥有什么，就去追求什么</p></div>
 		<nav class="nav social" aria-label="Social links">
 			<ul class="flat"><li><a href="https://github.com/zhiqli/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
@@ -90,17 +90,7 @@
 							<a href="/2019/04/shell%E8%84%9A%E6%9C%AC%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F/">shell脚本变量作用域</a>
 						</h4>
 						<span class="description">
-							
-								
-
-今天写一个shell脚本遇到一个问题，脚本为实现从文件中按行读取，拼接成一个字符串。大概代码如下
-
-```
-content=&#34;&#34;
-cat ./file | while read line
-do
-    content=$content&#34;...
-							
+							今天写一个shell脚本遇到一个问题，脚本为实现从文件中按行读取，拼接成一个字符串。大概代码如下 执行发现打印出来循环中打印了正确结果，而最后一个echo结果却是空。按道理content是全局变量，不会存在作用域的问题。在网上搜了一下发现其...
 						</span>
 					</div>
 				</div>
