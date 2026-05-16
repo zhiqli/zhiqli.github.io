@@ -59,14 +59,14 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 灰度发布 argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。
 在代码仓库中提供如下结构的kustomize目录。
 1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization.yaml │ ├── canary │ │ ├── kustomization.yaml │ │ └── resource-patch.yaml │ └── prod │ ├── kustomization.yaml │ └── resource-patch.yaml base/deployment.yaml就是一个普通的deployment base/kustomization.yaml 1 2 3 4 5 apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - deployment.yaml canary/kustomization.yaml 1 2 3 4 5 6 7 8 9 10 11 bases: - ../base nameSuffix: -canary-v2	// 新版本deploy name suffix，实际上在base中提供service.yaml，每次也会创建新的service，也就是说实现了蓝绿发布了？ commonLabels: version: v2	// 新版本tag canary: &#34;true&#34; patchesStrategicMerge: - resource-patch.yaml	// 由于kubectl中的kustomize不支持replica 所以通过patch来控制replicas，在新版本的kustomize只修改replicas count 可以不用patch方式。 images: - name: gitlab.cn/argo/argo-demo newTag: v2 // 灰度版本tag canary/resource-patch.yaml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 apiVersion: extensions/v1beta1 kind: Deployment metadata: labels: app: argo-demo name: argo-demo namespace: my-argo spec: replicas: 0	// 先建一个空的deploy template: spec: containers: - name: argo-demo resources:	// 其他内容通过kustomize也可以添加 requests: memory: &#34;64Mi&#34; cpu: &#34;250m&#34; limits: memory: &#34;64Mi&#34; cpu: &#34;250m&#34; prod中除了replica和label其他和canary中没有区别 接下来是灰度过程">
-<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 
-        <link id="dark-scheme" rel="stylesheet" type="text/css" href="https://zhiqli.github.io/css/dark.css" />
+        <link id="dark-scheme" rel="stylesheet" type="text/css" href="/css/dark.css" />
 
-	<script src="https://zhiqli.github.io/js/feather.min.js"></script>
+	<script src="/js/feather.min.js"></script>
 	
-		<script src="https://zhiqli.github.io/js/main.js"></script>
+		<script src="/js/main.js"></script>
 </head>
 
 
@@ -75,54 +75,53 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 
 	
 	<div class="container wrapper">
-		<div class="header">
-	
-		<div class="avatar">
-			<a href="https://zhiqli.github.io/">
-				<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
-			</a>
-		</div>
-	
-	<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1>
-	<div class="site-description"><p>你想拥有什么，就去追求什么</p><nav class="nav social">
+		<header class="header">
+	<div class="brand-row">
+		
+		<a class="avatar" href="https://zhiqli.github.io/" aria-label="广阔天地大有作为">
+			<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
+		</a>
+		
+		<div class="brand-copy">
+			<p class="brand-kicker">Code · Notes · 跑步</p>
+			<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1><p class="site-subtitle">你想拥有什么，就去追求什么</p></div>
+		<nav class="nav social" aria-label="Social links">
 			<ul class="flat"><li><a href="https://github.com/zhiqli/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
 		</nav>
 	</div>
 
-	<nav class="nav">
+	<nav class="nav primary-nav" aria-label="Main navigation">
 		<ul class="flat">
 			
+			
 			<li>
-				<a href="/">Home</a>
+				<a href="/" >首页</a>
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
+				<a href="/posts" >文章</a>
 			</li>
 			
 			<li>
-				<a href="/about">About</a>
+				<a href="/weekly" >周记</a>
 			</li>
 			
 			<li>
-				<a href="/weekly">Weekly</a>
+				<a href="/running" >跑步</a>
 			</li>
 			
 			<li>
-				<a href="/tags">Tags &amp; Stats</a>
-			</li>
-			
-			<li>
-				<a href="https://zhiqli.github.io/running_page/">Running</a>
+				<a href="/about" >关于</a>
 			</li>
 			
 		</ul>
 	</nav>
-</div>
+</header>
 
 
 		<div class="post">
     <div class="post-header">
+    
     
     <div class="meta">
         <div class="date">
@@ -134,6 +133,7 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
     <div class="matter">
         <h1 class="title">基于argocd&#43;kustomize实现金丝雀上线</h1>
     </div>
+    
 </div>
 
 
@@ -148,13 +148,13 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 </ul>
 <h2 id="部署">部署</h2>
 <p>argoCD部署非常简单，两行代码搞定。</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace argocd
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace argocd
 </span></span><span style="display:flex;"><span>kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 </span></span></code></pre></td></tr></table>
 </div>
@@ -200,9 +200,9 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 <p>argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。
 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。</p>
 <p>在代码仓库中提供如下结构的kustomize目录。</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -214,7 +214,7 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>├── kustomize
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>├── kustomize
 </span></span><span style="display:flex;"><span>│   ├── base
 </span></span><span style="display:flex;"><span>│   │   ├── deployment.yaml
 </span></span><span style="display:flex;"><span>│   │   ├── kustomization.yaml
@@ -230,16 +230,16 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 <li>base/deployment.yaml就是一个普通的deployment</li>
 <li>base/kustomization.yaml</li>
 </ul>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: kustomize.config.k8s.io/v1beta1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: kustomize.config.k8s.io/v1beta1
 </span></span><span style="display:flex;"><span>kind: Kustomization
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>resources:
@@ -249,9 +249,9 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 </div><ul>
 <li>canary/kustomization.yaml</li>
 </ul>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -264,7 +264,7 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bases:
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bases:
 </span></span><span style="display:flex;"><span>- ../base
 </span></span><span style="display:flex;"><span>nameSuffix: -canary-v2		// 新版本deploy name suffix，实际上在base中提供service.yaml，每次也会创建新的service，也就是说实现了蓝绿发布了？
 </span></span><span style="display:flex;"><span>commonLabels:
@@ -280,9 +280,9 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 </div><ul>
 <li>canary/resource-patch.yaml</li>
 </ul>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -304,7 +304,7 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: extensions/v1beta1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: extensions/v1beta1
 </span></span><span style="display:flex;"><span>kind: Deployment
 </span></span><span style="display:flex;"><span>metadata:
 </span></span><span style="display:flex;"><span>  labels:

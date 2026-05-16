@@ -50,14 +50,14 @@
 1.2 指导 code review对于教会开发人员一些关于语言、框架或通用软件设计原则的新知识具有重要作用。留下有助于开发人员学习新东西的评论总是可以的。随着时间的推移，共享知识是提高系统代码健康性的一部分。请记住，如果您的评论纯粹是教育性的，但对于满足本文档中描述的标准并不重要，请在评论前加上“ Nit:”，或者以其他方式表明作者并不必须在本 CL 中解决这个问题。
 1.3 原则 技术事实和数据否定观点和个人偏好。 在风格问题上，风格指南是绝对的权威。任何不在样式指南中的纯样式点(空格等)都是个人偏好的问题。风格应该与现有的一致。如果没有以前的风格，接受作者的。 软件设计的各个方面几乎从来不是一个纯粹的风格问题或者只是个人偏好。它们是基于基本原则的，应该根据这些原则来衡量，而不仅仅是根据个人意见。有时候有一些有效的选择。如果作者能够(通过数据或基于可靠的工程原理)证明几种方法同样有效，那么评论者应该接受作者的偏好。否则，选择将由软件设计的标准原则决定。 如果没有其他规则适用，那么reviewer可能会要求作者与当前代码库中的代码保持一致，只要这不会恶化系统的整体代码质量。 1.4 解决冲突 如果在code review中出现任何冲突，第一步应该是开发人员和reviewer根据本文档的内容以及 CL 作者指南和评审人员指南中的其他文档，努力达成共识。 当达成共识变得特别困难时，reviewer和作者之间应该举行一次面对面的会议或视频会议来讨论，而不仅仅是试图通过注释来解决冲突。(但是，如果您这样做，请确保将讨论结果记录为 CL 上的评论，以便将来的读者使用。)
 2. Code review应该看什么 2.1 设计 Code review中最重要的内容是 CL 的总体设计。CL 中各段代码的交互有意义吗？这个更改是属于您的代码库，还是属于库？它与系统的其他部分集成良好吗？现在是添加此功能的好时机吗？">
-<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 
-        <link id="dark-scheme" rel="stylesheet" type="text/css" href="https://zhiqli.github.io/css/dark.css" />
+        <link id="dark-scheme" rel="stylesheet" type="text/css" href="/css/dark.css" />
 
-	<script src="https://zhiqli.github.io/js/feather.min.js"></script>
+	<script src="/js/feather.min.js"></script>
 	
-		<script src="https://zhiqli.github.io/js/main.js"></script>
+		<script src="/js/main.js"></script>
 </head>
 
 
@@ -66,56 +66,55 @@
 
 	
 	<div class="container-wide wrapper">
-		<div class="header">
-	
-		<div class="avatar">
-			<a href="https://zhiqli.github.io/">
-				<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
-			</a>
-		</div>
-	
-	<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1>
-	<div class="site-description"><p>你想拥有什么，就去追求什么</p><nav class="nav social">
+		<header class="header">
+	<div class="brand-row">
+		
+		<a class="avatar" href="https://zhiqli.github.io/" aria-label="广阔天地大有作为">
+			<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
+		</a>
+		
+		<div class="brand-copy">
+			<p class="brand-kicker">Code · Notes · 跑步</p>
+			<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1><p class="site-subtitle">你想拥有什么，就去追求什么</p></div>
+		<nav class="nav social" aria-label="Social links">
 			<ul class="flat"><li><a href="https://github.com/zhiqli/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
 		</nav>
 	</div>
 
-	<nav class="nav">
+	<nav class="nav primary-nav" aria-label="Main navigation">
 		<ul class="flat">
 			
+			
 			<li>
-				<a href="/">Home</a>
+				<a href="/" >首页</a>
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
+				<a href="/posts" >文章</a>
 			</li>
 			
 			<li>
-				<a href="/about">About</a>
+				<a href="/weekly" >周记</a>
 			</li>
 			
 			<li>
-				<a href="/weekly">Weekly</a>
+				<a href="/running" >跑步</a>
 			</li>
 			
 			<li>
-				<a href="/tags">Tags &amp; Stats</a>
-			</li>
-			
-			<li>
-				<a href="https://zhiqli.github.io/running_page/">Running</a>
+				<a href="/about" >关于</a>
 			</li>
 			
 		</ul>
 	</nav>
-</div>
+</header>
 
 
 		
 <div class="article-nav" id="article-nav-id">
     <div class="post">
         <div class="post-header">
+    
     
     <div class="meta">
         <div class="date">
@@ -127,6 +126,7 @@
     <div class="matter">
         <h1 class="title">Google Code review 指南</h1>
     </div>
+    
 </div>
 
 
@@ -375,14 +375,14 @@ CL的作者不应该把风格变化与其他变化结合起来。这使人很难
 <ul>
 <li>功能修改</li>
 </ul>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>rpc: remove size limit on RPC server message freelist.
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>rpc: remove size limit on RPC server message freelist.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Servers like FizzBuzz have very large messages and would benefit from reuse. Make the freelist larger, and add a goroutine that frees the freelist entries slowly over time, so that idle servers eventually release all freelist entries.
 </span></span></code></pre></td></tr></table>
@@ -391,9 +391,9 @@ CL的作者不应该把风格变化与其他变化结合起来。这使人很难
 <ul>
 <li>重构</li>
 </ul>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -402,7 +402,7 @@ CL的作者不应该把风格变化与其他变化结合起来。这使人很难
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Construct a Task with a TimeKeeper to use its TimeStr and Now methods.
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Construct a Task with a TimeKeeper to use its TimeStr and Now methods.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Add a Now method to Task, so the borglet() getter method can be removed (which was only used by OOMCandidate to call borglet&#39;s Now method). This replaces the methods on Borglet that delegate to a TimeKeeper.
 </span></span><span style="display:flex;"><span>
@@ -415,14 +415,14 @@ CL的作者不应该把风格变化与其他变化结合起来。这使人很难
 <ul>
 <li>小的CL也需要上下文</li>
 </ul>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>Create a Python3 build rule <span style="color:#069;font-weight:bold">for</span> status<span style="color:#555">.</span>py<span style="color:#555">.</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>Create a Python3 build rule <span style="color:#069;font-weight:bold">for</span> status<span style="color:#555">.</span>py<span style="color:#555">.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>This allows consumers who are already using this as <span style="color:#000;font-weight:bold">in</span> Python3 to depend on a rule that is next to the original status build rule instead of somewhere <span style="color:#000;font-weight:bold">in</span> their own tree<span style="color:#555">.</span> It encourages new consumers to use Python3 <span style="color:#069;font-weight:bold">if</span> they can, instead of Python2, <span style="color:#000;font-weight:bold">and</span> significantly simplifies some automated build file refactoring tools being worked on currently<span style="color:#555">.</span>
 </span></span></code></pre></td></tr></table>

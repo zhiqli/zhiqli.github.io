@@ -30,14 +30,14 @@
   <meta name="twitter:description" content="istio中会对网格内数据的metric数据收集，也可以自定义一些新的metric。通过这些数据有助于了解流量如何在集群中流动的。但这些数据不包括应用程序业务层的数据。 我们的应用中都有调用prometheus的go client api统计一些业务层的数据，由应用服务暴露一个端口。这些应用层的数据抓取当然可以起一个独立的prometheus服务，在istio1.1中，也可以使用istio的prometheus来收集。 本文主要记录采用istio prometheus抓取数据的配置。
 配置 在文档中没有提及抓取收集应用程序metrics，这个描述是在FAQ中，Istio / Metrics and Logs FAQ。在install/kubernetes/istio-demo.yaml或install/kubernetes/istio-demo-auth.yaml的prometheus ConfigMap配置中有两个job
 1 2 3 4 5 6 7 - job_name: &#39;kubernetes-pods&#39; kubernetes_sd_configs: - role: pod ..... - job_name: &#39;kubernetes-pods-istio-secure&#39; scheme: https 在没有启用mutual TLS 的环境中，job kubernetes-pods会从 Pod 中收集应用的metric。如果 Istio 启用了mutual TLS，就由job kubernetes-pods-istio-secure完成应用metric的收集工作。 这两个job都需要在pod yaml中添加annotations">
-<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 
-        <link id="dark-scheme" rel="stylesheet" type="text/css" href="https://zhiqli.github.io/css/dark.css" />
+        <link id="dark-scheme" rel="stylesheet" type="text/css" href="/css/dark.css" />
 
-	<script src="https://zhiqli.github.io/js/feather.min.js"></script>
+	<script src="/js/feather.min.js"></script>
 	
-		<script src="https://zhiqli.github.io/js/main.js"></script>
+		<script src="/js/main.js"></script>
 </head>
 
 
@@ -46,54 +46,53 @@
 
 	
 	<div class="container wrapper">
-		<div class="header">
-	
-		<div class="avatar">
-			<a href="https://zhiqli.github.io/">
-				<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
-			</a>
-		</div>
-	
-	<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1>
-	<div class="site-description"><p>你想拥有什么，就去追求什么</p><nav class="nav social">
+		<header class="header">
+	<div class="brand-row">
+		
+		<a class="avatar" href="https://zhiqli.github.io/" aria-label="广阔天地大有作为">
+			<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
+		</a>
+		
+		<div class="brand-copy">
+			<p class="brand-kicker">Code · Notes · 跑步</p>
+			<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1><p class="site-subtitle">你想拥有什么，就去追求什么</p></div>
+		<nav class="nav social" aria-label="Social links">
 			<ul class="flat"><li><a href="https://github.com/zhiqli/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
 		</nav>
 	</div>
 
-	<nav class="nav">
+	<nav class="nav primary-nav" aria-label="Main navigation">
 		<ul class="flat">
 			
+			
 			<li>
-				<a href="/">Home</a>
+				<a href="/" >首页</a>
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
+				<a href="/posts" >文章</a>
 			</li>
 			
 			<li>
-				<a href="/about">About</a>
+				<a href="/weekly" >周记</a>
 			</li>
 			
 			<li>
-				<a href="/weekly">Weekly</a>
+				<a href="/running" >跑步</a>
 			</li>
 			
 			<li>
-				<a href="/tags">Tags &amp; Stats</a>
-			</li>
-			
-			<li>
-				<a href="https://zhiqli.github.io/running_page/">Running</a>
+				<a href="/about" >关于</a>
 			</li>
 			
 		</ul>
 	</nav>
-</div>
+</header>
 
 
 		<div class="post">
     <div class="post-header">
+    
     
     <div class="meta">
         <div class="date">
@@ -105,6 +104,7 @@
     <div class="matter">
         <h1 class="title">istio 抓取应用程序的metric</h1>
     </div>
+    
 </div>
 
 
@@ -115,9 +115,9 @@
 本文主要记录采用istio prometheus抓取数据的配置。</p>
 <h3 id="配置">配置</h3>
 <p>在文档中没有提及抓取收集应用程序metrics，这个描述是在FAQ中，<a href="https://istio.io/help/faq/metrics-and-logs/#prometheus-application-metrics">Istio / Metrics and Logs FAQ</a>。在<code>install/kubernetes/istio-demo.yaml</code>或<code>install/kubernetes/istio-demo-auth.yaml</code>的prometheus ConfigMap配置中有两个job</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -126,7 +126,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    - job_name: &#39;kubernetes-pods&#39;
 </span></span><span style="display:flex;"><span>      kubernetes_sd_configs:
 </span></span><span style="display:flex;"><span>      - role: pod
@@ -137,14 +137,14 @@
 </div>
 </div><p>在没有启用mutual TLS 的环境中，job <code>kubernetes-pods</code>会从 Pod 中收集应用的metric。如果 Istio 启用了mutual TLS，就由job <code>kubernetes-pods-istio-secure</code>完成应用metric的收集工作。
 这两个job都需要在pod yaml中添加annotations</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>prometheus.io/scrape: &#34;true&#34;
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>prometheus.io/scrape: &#34;true&#34;
 </span></span><span style="display:flex;"><span>prometheus.io/path: &#34;&lt;metrics path&gt;&#34;
 </span></span><span style="display:flex;"><span>prometheus.io/port: &#34;&lt;metrics port&gt;&#34;
 </span></span></code></pre></td></tr></table>

@@ -23,14 +23,14 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="内存一直涨，是内存泄露吗？">
   <meta name="twitter:description" content="内存一直涨就是内存泄漏？可能不是。">
-<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 
-        <link id="dark-scheme" rel="stylesheet" type="text/css" href="https://zhiqli.github.io/css/dark.css" />
+        <link id="dark-scheme" rel="stylesheet" type="text/css" href="/css/dark.css" />
 
-	<script src="https://zhiqli.github.io/js/feather.min.js"></script>
+	<script src="/js/feather.min.js"></script>
 	
-		<script src="https://zhiqli.github.io/js/main.js"></script>
+		<script src="/js/main.js"></script>
 </head>
 
 
@@ -39,54 +39,53 @@
 
 	
 	<div class="container wrapper">
-		<div class="header">
-	
-		<div class="avatar">
-			<a href="https://zhiqli.github.io/">
-				<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
-			</a>
-		</div>
-	
-	<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1>
-	<div class="site-description"><p>你想拥有什么，就去追求什么</p><nav class="nav social">
+		<header class="header">
+	<div class="brand-row">
+		
+		<a class="avatar" href="https://zhiqli.github.io/" aria-label="广阔天地大有作为">
+			<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
+		</a>
+		
+		<div class="brand-copy">
+			<p class="brand-kicker">Code · Notes · 跑步</p>
+			<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1><p class="site-subtitle">你想拥有什么，就去追求什么</p></div>
+		<nav class="nav social" aria-label="Social links">
 			<ul class="flat"><li><a href="https://github.com/zhiqli/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
 		</nav>
 	</div>
 
-	<nav class="nav">
+	<nav class="nav primary-nav" aria-label="Main navigation">
 		<ul class="flat">
 			
+			
 			<li>
-				<a href="/">Home</a>
+				<a href="/" >首页</a>
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
+				<a href="/posts" >文章</a>
 			</li>
 			
 			<li>
-				<a href="/about">About</a>
+				<a href="/weekly" >周记</a>
 			</li>
 			
 			<li>
-				<a href="/weekly">Weekly</a>
+				<a href="/running" >跑步</a>
 			</li>
 			
 			<li>
-				<a href="/tags">Tags &amp; Stats</a>
-			</li>
-			
-			<li>
-				<a href="https://zhiqli.github.io/running_page/">Running</a>
+				<a href="/about" >关于</a>
 			</li>
 			
 		</ul>
 	</nav>
-</div>
+</header>
 
 
 		<div class="post">
     <div class="post-header">
+    
     
     <div class="meta">
         <div class="date">
@@ -98,6 +97,7 @@
     <div class="matter">
         <h1 class="title">内存一直涨，是内存泄露吗？</h1>
     </div>
+    
 </div>
 
 
@@ -125,9 +125,9 @@
 </p>
 <p>这个 GetChanceEntry 内部逻辑只是查 DB，对 DB 返回数据中的 json 字段进行反序列化，处理以后再序列化。
 猜测会不会是一次性查询的数据太多？数据量是根据查询条件决定，会不会是查询的条件不合理？</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -138,7 +138,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> GetChanceEntry(ids []int64) ([]Data, error) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> GetChanceEntry(ids []int64) ([]Data, error) {
 </span></span><span style="display:flex;"><span>    <span style="color:#555">....</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> err :<span style="color:#555">=</span> dbconn<span style="color:#555">.</span>Where(<span style="color:#c30">&#34;id IN (?)&#34;</span>, ids)<span style="color:#555">.</span>Scan(<span style="color:#555">&amp;</span>entries)<span style="color:#555">.</span>Error; err <span style="color:#555">!=</span> nil {
@@ -165,9 +165,9 @@
 list 进去发现第二个循环使用了绝大部分内存，看到这里，大概知道原因了，因为这个 id 的量非常大，每次请求的重复率非常低，因此 local cache 的量自然就高了。</p>
 <h2 id="验证">验证</h2>
 <p>为了更好验证这个问题，在本地写了一个 test 来进行对比</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -182,7 +182,7 @@ list 进去发现第二个循环使用了绝大部分内存，看到这里，大
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> TestGetCache(t <span style="color:#555">*</span>testing<span style="color:#555">.</span>T) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> TestGetCache(t <span style="color:#555">*</span>testing<span style="color:#555">.</span>T) {
 </span></span><span style="display:flex;"><span>    rand<span style="color:#555">.</span>Seed(time<span style="color:#555">.</span>Now()<span style="color:#555">.</span>UnixNano())
 </span></span><span style="display:flex;"><span>    initData()
 </span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">var</span> m runtime<span style="color:#555">.</span>MemStats
@@ -198,37 +198,37 @@ list 进去发现第二个循环使用了绝大部分内存，看到这里，大
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在这个测试中，发现这里占用的内存确实比较多，模拟 100k 个id</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>start ... 26 Mb
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>start ... 26 Mb
 </span></span><span style="display:flex;"><span>after alloc mem ... 1221 Mb
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到，内存直接去到 1G +。而线上有几十万 id 占好几 G 内存也是合理的，所以基本确定并没有内存泄漏，而是这个 local cache 消耗内存过大。</p>
 <h2 id="解决">解决</h2>
 <p>要解决这个问题，首先就是优化这个内存，发现其中 local cache 中的 value 数据定义如下</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>type dataMapping map[string]idData
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>type dataMapping map[string]idData
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>将 <code>idData</code> 修改为指针再次运行上面的 test
 <code>type dataMapping map[string]*idData</code></p>
 <p>这一次有了很明显的改善</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>start ... 25 Mb
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>start ... 25 Mb
 </span></span><span style="display:flex;"><span>after alloc mem ... 331 Mb
 </span></span></code></pre></td></tr></table>
 </div>

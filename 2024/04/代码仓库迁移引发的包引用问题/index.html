@@ -24,14 +24,14 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="代码仓库迁移引发的包引用问题">
   <meta name="twitter:description" content="奇怪的问题，简单的原因">
-<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://zhiqli.github.io/css/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 
-        <link id="dark-scheme" rel="stylesheet" type="text/css" href="https://zhiqli.github.io/css/dark.css" />
+        <link id="dark-scheme" rel="stylesheet" type="text/css" href="/css/dark.css" />
 
-	<script src="https://zhiqli.github.io/js/feather.min.js"></script>
+	<script src="/js/feather.min.js"></script>
 	
-		<script src="https://zhiqli.github.io/js/main.js"></script>
+		<script src="/js/main.js"></script>
 </head>
 
 
@@ -40,54 +40,53 @@
 
 	
 	<div class="container wrapper">
-		<div class="header">
-	
-		<div class="avatar">
-			<a href="https://zhiqli.github.io/">
-				<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
-			</a>
-		</div>
-	
-	<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1>
-	<div class="site-description"><p>你想拥有什么，就去追求什么</p><nav class="nav social">
+		<header class="header">
+	<div class="brand-row">
+		
+		<a class="avatar" href="https://zhiqli.github.io/" aria-label="广阔天地大有作为">
+			<img src="https://raw.githubusercontent.com/zhiqli/imgs/main/avatar.png" alt="广阔天地大有作为" />
+		</a>
+		
+		<div class="brand-copy">
+			<p class="brand-kicker">Code · Notes · 跑步</p>
+			<h1 class="site-title"><a href="https://zhiqli.github.io/">广阔天地大有作为</a></h1><p class="site-subtitle">你想拥有什么，就去追求什么</p></div>
+		<nav class="nav social" aria-label="Social links">
 			<ul class="flat"><li><a href="https://github.com/zhiqli/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
 		</nav>
 	</div>
 
-	<nav class="nav">
+	<nav class="nav primary-nav" aria-label="Main navigation">
 		<ul class="flat">
 			
+			
 			<li>
-				<a href="/">Home</a>
+				<a href="/" >首页</a>
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
+				<a href="/posts" >文章</a>
 			</li>
 			
 			<li>
-				<a href="/about">About</a>
+				<a href="/weekly" >周记</a>
 			</li>
 			
 			<li>
-				<a href="/weekly">Weekly</a>
+				<a href="/running" >跑步</a>
 			</li>
 			
 			<li>
-				<a href="/tags">Tags &amp; Stats</a>
-			</li>
-			
-			<li>
-				<a href="https://zhiqli.github.io/running_page/">Running</a>
+				<a href="/about" >关于</a>
 			</li>
 			
 		</ul>
 	</nav>
-</div>
+</header>
 
 
 		<div class="post">
     <div class="post-header">
+    
     
     <div class="meta">
         <div class="date">
@@ -99,6 +98,7 @@
     <div class="matter">
         <h1 class="title">代码仓库迁移引发的包引用问题</h1>
     </div>
+    
 </div>
 
 
@@ -140,9 +140,9 @@
 </p>
 <h3 id="分析代码">分析代码</h3>
 <p>代码中，上报监控都是来自一个 reportMetrics 函数</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -164,7 +164,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> reportMetrics(requestPath, httpMethod string, statusCode <span style="color:#c00;font-weight:bold">int</span>, costTime float64, c <span style="color:#555">*</span>gin<span style="color:#555">.</span>Context) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> reportMetrics(requestPath, httpMethod string, statusCode <span style="color:#c00;font-weight:bold">int</span>, costTime float64, c <span style="color:#555">*</span>gin<span style="color:#555">.</span>Context) {
 </span></span><span style="display:flex;"><span>    arr :<span style="color:#555">=</span> strings<span style="color:#555">.</span>Split(requestPath, <span style="color:#c30">&#34;/&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> len(arr) <span style="color:#555">&lt;</span> <span style="color:#f60">6</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span>
@@ -188,9 +188,9 @@
 </div>
 </div><p>在这里猜测是不是老版本的 path 通过 / split 以后都小于 6 呢？ 从上面的代码  path := c.Request.URL.Path，难道是 go 版本升级以后，Path 返回的内容不一样了？</p>
 <p>在验证这个问题之前，找出老代码进行对比。发现两个仓库的代码不一样。</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -220,7 +220,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> reportMetrics(requestPath, httpMethod string, statusCode <span style="color:#c00;font-weight:bold">int</span>, costTime float64, c <span style="color:#555">*</span>gin<span style="color:#555">.</span>Context) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> reportMetrics(requestPath, httpMethod string, statusCode <span style="color:#c00;font-weight:bold">int</span>, costTime float64, c <span style="color:#555">*</span>gin<span style="color:#555">.</span>Context) {
 </span></span><span style="display:flex;"><span>    arr :<span style="color:#555">=</span> strings<span style="color:#555">.</span>Split(requestPath, <span style="color:#c30">&#34;/&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> len(arr) <span style="color:#555">&lt;</span> <span style="color:#f60">4</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span>
@@ -254,9 +254,9 @@
 <h2 id="原因">原因</h2>
 <p>先说结论，在老代码里面有两个 common/middleware package 导致，新代码调整目录结构后修改 import 时出错。</p>
 <p>以下是迁移前的目录结构</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -269,7 +269,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>service
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>service
 </span></span><span style="display:flex;"><span>|__common
 </span></span><span style="display:flex;"><span>|   |__middleware
 </span></span><span style="display:flex;"><span>|       |__ LogMiddleware.go
@@ -283,9 +283,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>迁移后的代码结构</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -298,7 +298,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>myserver
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>myserver
 </span></span><span style="display:flex;"><span>|__common
 </span></span><span style="display:flex;"><span>|   |__middleware
 </span></span><span style="display:flex;"><span>|       |__ LogMiddleware.go  // 正确的引用
