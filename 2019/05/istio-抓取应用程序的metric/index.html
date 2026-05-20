@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>istio 抓取应用程序的metric - 广阔天地大有作为</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>istio 抓取应用程序的metric - 广阔天地大有作为</title><link rel="icon" type="image/png" href=/images/avatar-anime.png /><meta name="viewport" content="width=device-width, initial-scale=1">
 	
   <meta itemprop="name" content="istio 抓取应用程序的metric">
   <meta itemprop="description" content="istio中会对网格内数据的metric数据收集，也可以自定义一些新的metric。通过这些数据有助于了解流量如何在集群中流动的。但这些数据不包括应用程序业务层的数据。 我们的应用中都有调用prometheus的go client api统计一些业务层的数据，由应用服务暴露一个端口。这些应用层的数据抓取当然可以起一个独立的prometheus服务，在istio1.1中，也可以使用istio的prometheus来收集。 本文主要记录采用istio prometheus抓取数据的配置。
