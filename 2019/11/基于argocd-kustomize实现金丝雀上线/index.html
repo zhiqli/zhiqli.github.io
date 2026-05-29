@@ -4,8 +4,8 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>基于argocd&#43;kustomize实现金丝雀上线 - 广阔天地大有作为</title><link rel="icon" type="image/png" href=/images/avatar-anime.png /><meta name="viewport" content="width=device-width, initial-scale=1">
 	
-  <meta itemprop="name" content="基于argocd&#43;kustomize实现金丝雀上线">
-  <meta itemprop="description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
+	<meta itemprop="name" content="基于argocd&#43;kustomize实现金丝雀上线">
+	<meta itemprop="description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
 spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java栈，所以不予考虑。 gitlab 也有CD能力，但是太简单，本质上还是依赖.gitlab.yml，不方便控制。网上有很多如何配置gitlab cicd的文章。 tekton 云原生，版本还比较低，没部署使用。 argocd 和git仓库能紧密结合，即gitops。目前一定迭代到1.3版本，界面简洁清晰。 部署 argoCD部署非常简单，两行代码搞定。
 1 2 kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 部署客户端，有些操作在UI无法实现，需要通过客户端命令行来操作，
 为了方便外部访问，增加一个ingress来提供外部访问，参考文档
@@ -18,13 +18,13 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 灰度发布 argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。
 在代码仓库中提供如下结构的kustomize目录。
 1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization.yaml │ ├── canary │ │ ├── kustomization.yaml │ │ └── resource-patch.yaml │ └── prod │ ├── kustomization.yaml │ └── resource-patch.yaml base/deployment.yaml就是一个普通的deployment base/kustomization.yaml 1 2 3 4 5 apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - deployment.yaml canary/kustomization.yaml 1 2 3 4 5 6 7 8 9 10 11 bases: - ../base nameSuffix: -canary-v2	// 新版本deploy name suffix，实际上在base中提供service.yaml，每次也会创建新的service，也就是说实现了蓝绿发布了？ commonLabels: version: v2	// 新版本tag canary: &#34;true&#34; patchesStrategicMerge: - resource-patch.yaml	// 由于kubectl中的kustomize不支持replica 所以通过patch来控制replicas，在新版本的kustomize只修改replicas count 可以不用patch方式。 images: - name: gitlab.cn/argo/argo-demo newTag: v2 // 灰度版本tag canary/resource-patch.yaml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 apiVersion: extensions/v1beta1 kind: Deployment metadata: labels: app: argo-demo name: argo-demo namespace: my-argo spec: replicas: 0	// 先建一个空的deploy template: spec: containers: - name: argo-demo resources:	// 其他内容通过kustomize也可以添加 requests: memory: &#34;64Mi&#34; cpu: &#34;250m&#34; limits: memory: &#34;64Mi&#34; cpu: &#34;250m&#34; prod中除了replica和label其他和canary中没有区别 接下来是灰度过程">
-  <meta itemprop="datePublished" content="2019-11-22T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2019-11-22T00:00:00+00:00">
-  <meta itemprop="wordCount" content="228">
-  <meta itemprop="keywords" content="Devops"><meta property="og:url" content="https://zhiqli.github.io/2019/11/%E5%9F%BA%E4%BA%8Eargocd-kustomize%E5%AE%9E%E7%8E%B0%E9%87%91%E4%B8%9D%E9%9B%80%E4%B8%8A%E7%BA%BF/">
-  <meta property="og:site_name" content="广阔天地大有作为">
-  <meta property="og:title" content="基于argocd&#43;kustomize实现金丝雀上线">
-  <meta property="og:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
+	<meta itemprop="datePublished" content="2019-11-22T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2019-11-22T00:00:00+00:00">
+	<meta itemprop="wordCount" content="228">
+	<meta itemprop="keywords" content="Devops"><meta property="og:url" content="https://zhiqli.github.io/2019/11/%E5%9F%BA%E4%BA%8Eargocd-kustomize%E5%AE%9E%E7%8E%B0%E9%87%91%E4%B8%9D%E9%9B%80%E4%B8%8A%E7%BA%BF/">
+	<meta property="og:site_name" content="广阔天地大有作为">
+	<meta property="og:title" content="基于argocd&#43;kustomize实现金丝雀上线">
+	<meta property="og:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
 spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java栈，所以不予考虑。 gitlab 也有CD能力，但是太简单，本质上还是依赖.gitlab.yml，不方便控制。网上有很多如何配置gitlab cicd的文章。 tekton 云原生，版本还比较低，没部署使用。 argocd 和git仓库能紧密结合，即gitops。目前一定迭代到1.3版本，界面简洁清晰。 部署 argoCD部署非常简单，两行代码搞定。
 1 2 kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 部署客户端，有些操作在UI无法实现，需要通过客户端命令行来操作，
 为了方便外部访问，增加一个ingress来提供外部访问，参考文档
@@ -37,16 +37,16 @@ spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java
 灰度发布 argopro还有一个项目argo-rollouts是支持蓝绿、金丝雀发布的，是基于helm来实现的。不过目前该项目版本比较低，且需要安装kubectl子命令来后台控制，所以暂不考虑。 可以配合kustomize一起来实现一个简单的灰度发布系统，当然也可以配合helm一起，不过helm的学习成本要高一点，先通过kustomize，后续可以再考虑helm。
 在代码仓库中提供如下结构的kustomize目录。
 1 2 3 4 5 6 7 8 9 10 ├── kustomize │ ├── base │ │ ├── deployment.yaml │ │ ├── kustomization.yaml │ ├── canary │ │ ├── kustomization.yaml │ │ └── resource-patch.yaml │ └── prod │ ├── kustomization.yaml │ └── resource-patch.yaml base/deployment.yaml就是一个普通的deployment base/kustomization.yaml 1 2 3 4 5 apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - deployment.yaml canary/kustomization.yaml 1 2 3 4 5 6 7 8 9 10 11 bases: - ../base nameSuffix: -canary-v2	// 新版本deploy name suffix，实际上在base中提供service.yaml，每次也会创建新的service，也就是说实现了蓝绿发布了？ commonLabels: version: v2	// 新版本tag canary: &#34;true&#34; patchesStrategicMerge: - resource-patch.yaml	// 由于kubectl中的kustomize不支持replica 所以通过patch来控制replicas，在新版本的kustomize只修改replicas count 可以不用patch方式。 images: - name: gitlab.cn/argo/argo-demo newTag: v2 // 灰度版本tag canary/resource-patch.yaml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 apiVersion: extensions/v1beta1 kind: Deployment metadata: labels: app: argo-demo name: argo-demo namespace: my-argo spec: replicas: 0	// 先建一个空的deploy template: spec: containers: - name: argo-demo resources:	// 其他内容通过kustomize也可以添加 requests: memory: &#34;64Mi&#34; cpu: &#34;250m&#34; limits: memory: &#34;64Mi&#34; cpu: &#34;250m&#34; prod中除了replica和label其他和canary中没有区别 接下来是灰度过程">
-  <meta property="og:locale" content="zh">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2019-11-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2019-11-22T00:00:00+00:00">
-    <meta property="article:tag" content="Devops">
+	<meta property="og:locale" content="zh">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2019-11-22T00:00:00+00:00">
+		<meta property="article:modified_time" content="2019-11-22T00:00:00+00:00">
+		<meta property="article:tag" content="Devops">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="基于argocd&#43;kustomize实现金丝雀上线">
-  <meta name="twitter:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="基于argocd&#43;kustomize实现金丝雀上线">
+	<meta name="twitter:description" content="最近研究了一些CI/CD开源工具，目前项目CI依赖gitlab，但gitlab的CD功能太弱，所以调研其他一些工具看看能不能在生产应用。
 spinnaker 可谓功能最全最为成熟支持多云，也相对复杂，是java栈，所以不予考虑。 gitlab 也有CD能力，但是太简单，本质上还是依赖.gitlab.yml，不方便控制。网上有很多如何配置gitlab cicd的文章。 tekton 云原生，版本还比较低，没部署使用。 argocd 和git仓库能紧密结合，即gitops。目前一定迭代到1.3版本，界面简洁清晰。 部署 argoCD部署非常简单，两行代码搞定。
 1 2 kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 部署客户端，有些操作在UI无法实现，需要通过客户端命令行来操作，
 为了方便外部访问，增加一个ingress来提供外部访问，参考文档
